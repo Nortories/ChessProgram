@@ -6,68 +6,52 @@
  ************************************************************************/
 
 #include "piece.h"
+#include "point.h"
 
-class Piece {
-protected:
-    Position position;
-    bool fWhite;
-    int nMove;
-    int lastMove;
-    char type;
+Piece::Piece(const Point& pos, bool isWhite): position(pos), fWhite(isWhite) {
+    nMove = 0;
+    type = ' ';
+    // Implementation here
+}
 
-public:
-    // Constructor
-    Piece(const Position& pos, bool isWhite) : position(pos), fWhite(isWhite), nMove(0), lastMove(0), type('') {}
-
-    // Public methods as per the test file
-    void assign(const Position& pos) {
-        // Stub 
+    bool Piece::isWhite() const { 
+        return this->fWhite;
     }
 
-    void assign(const Piece& piece) {
-        // Stub 
-    }
-
-    bool isWhite() const {
+    bool Piece::isMove() const {
         // Stub 
         return false;
     }
 
-    bool isMove() const {
-        // Stub 
-        return false;
-    }
-
-    int getNMoves() const {
+    int Piece::getNMoves() const {
         // Stub 
         return 0;
     }
 
-    Position getPosition() const {
-        // Stub 
-        return Position(); 
+    // Implementation of getPosition
+    Point Piece::getPosition() const {
+        return this->position;
     }
 
-    bool justMoved() const {
+    bool Piece::justMoved() const {
         // Stub 
         return false;
     }
 
-    char getLetter() const {
+    char Piece::getLetter() const {
         // Stub 
         return '\0';
     }
-    void setType() {
+    void Piece::setType() {
 		// Stub
 	}
 
-    char getType() const {
+    char Piece::getType() const {
         // Stub
-        return '';
+        char empty = ' ';
+        return empty;
     }
 
-    void display(/* Parameters for display, e.g., ogstream */) {
+    void Piece::display(/* Parameters for display, e.g., ogstream */) {
         // Stub 
     }
-
-};

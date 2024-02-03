@@ -43,6 +43,10 @@
 
 using namespace std;
 
+/***********************************
+* Member variables for colors
+*************************************/
+
 // pieces: black and white
 const int RGB_WHITE[] = { 255, 255, 255 };
 const int RGB_BLACK[] = { 0, 0, 0 };

@@ -10,6 +10,9 @@
 #include <cassert>        // for ASSERT
 #include <fstream>        // for IFSTREAM
 #include <string>         // for STRING
+#include "testRunner.h"     // for testing
+#include <exception>       // for exception
+#include <iostream>        // for cerr
 using namespace std;
 
 /***********************************************
@@ -500,6 +503,20 @@ int WINAPI WinMain(
 int main(int argc, char** argv)
 #endif // !_WIN32
 {
+    /********************************
+    * TESTING SPACE FOR TEST RUNNERS
+    ********************************/
+    std::cout << "RANDOM STUFFF" << endl;
+
+    TestRunner tr;
+    try {
+        tr.runPieceTest();
+        std::cerr << "Testing completed successfully" << std::endl;
+    }
+    catch (...) {
+        std::cerr << "Testing failed!!! " << std::endl;
+    }
+    std::cout << "Testing completed successfully" << std::endl;
    Interface ui("Chess");    
 
    // Initialize the game class

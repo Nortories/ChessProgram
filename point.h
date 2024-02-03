@@ -33,6 +33,7 @@ public:
    void addX(double dx) { setX(getX() + dx); }
    void addY(double dy) { setY(getY() + dy); }
 
+   // these are member variables, or could be called properties or attributes
 private:
    double x;           // horizontal position
    double y;           // vertical position

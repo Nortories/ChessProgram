@@ -1,3 +1,9 @@
-C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\chess.cpp;C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\x64\Debug\chess.obj
-C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\uiDraw.cpp;C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\x64\Debug\uiDraw.obj
-C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\uiInteract.cpp;C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\x64\Debug\uiInteract.obj
+C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\chess.cpp;C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\chess.obj
+C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\move.cpp;C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\move.obj
+C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\piece.cpp;C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\piece.obj
+C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\pieceTests.cpp;C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\pieceTests.obj
+C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\position.cpp;C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\position.obj
+C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\testMove.cpp;C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\testMove.obj
+C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\testPosition.cpp;C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\testPosition.obj
+C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\uiDraw.cpp;C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\uiDraw.obj
+C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\uiInteract.cpp;C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\uiInteract.obj

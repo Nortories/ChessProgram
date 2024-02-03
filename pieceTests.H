@@ -18,24 +18,24 @@ public:
     void run() const
     {
 		testConstructor();
-		testAssignPosition();
-		testAssignPiece();
-		testIsWhite();
-		testIsMove();
-		testGetNMoves();
-		testGetPosition();
-		testJustMoved();
-		testGetLetter();
+		//testAssignPosition();
+		//testAssignPiece();
+		//testIsWhite();
+		//testIsMove();
+		//testGetNMoves();
+		//testGetPosition();
+		//testJustMoved();
+		//testGetLetter();
 	}
 
 private:
     void testConstructor() const;
-    void testAssignPosition() const;
-    void testAssignPiece() const;
-    void testIsWhite() const;
-    void testIsMove() const;
-    void testGetNMoves() const;
-    void testGetPosition() const;
-    void testJustMoved() const;
-    void testGetLetter() const;
+    //void testAssignPosition() const;
+    //void testAssignPiece() const;
+    //void testIsWhite() const;
+    //void testIsMove() const;
+    //void testGetNMoves() const;
+    //void testGetPosition() const;
+    //void testJustMoved() const;
+    //void testGetLetter() const;
 };

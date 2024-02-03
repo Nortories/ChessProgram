@@ -5,10 +5,19 @@
  *    Joshua Sooaemalelagi & Kai
  ************************************************************************/
 
+#include <Windows.h>  //needed for pop up message box
+
 #include "pieceTests.h" // Include your test header file
 #include "piece.h"     // Include the Piece class
 #include <cassert>     // Include assert for testing
 #include "point.h"     // Include the Point class
+
+
+ // Redefine assert to throw an exception instead of aborting
+#undef assert
+#define assert(expression) \
+    if (!(expression)) throw std::runtime_error("Assertion failed: " #expression)
+
 
 /***************************************
  * TEST CONSTRUCTOR
@@ -24,161 +33,240 @@ void PieceTest::testConstructor() const
     Piece pieceTest(pos, isWhite);
 
     // VERIFY
+    try {
     assert(1 == (pieceTest.getPosition()).getX());
     assert(true == pieceTest.isWhite());
 }
+    catch (const std::exception& e) {
+        //windows pop up message box to show that all test cases have passed
+        MessageBox(NULL, "testConstructor FAIL", "Notification", MB_OK | MB_ICONINFORMATION);
+    }
+}
 
 
-///***************************************
-// * TEST ASSIGN POSITION
-// ***************************************/
-//void PieceTest::testAssignPosition() const
-//{
-//    // SETUP
-//    Point firstPosition(1); // Initial position
-//    bool isWhite = true; // Initial color
-//    Piece pieceTest(firstPosition, isWhite); // Create a Piece with initial position
-//    Point newPosition(2); // New position to assign to the piece
-//
-//    // EXERCISE
-//    pieceTest.assign(newPosition); // Assign new position to the piece
-//
-//    // VERIFY
-//    assert(newPosition == pieceTest.getPosition()); // Verify if the piece's position is updated correctly
-//    assert(isWhite == pieceTest.isWhite()); // Check if 'isWhite' attribute remains unchanged
-//}
+/***************************************
+ * TEST ASSIGN POSITION
+ ***************************************/
+void PieceTest::testAssignPosition() const
+{
+    // SETUP
+    Point pos1; // Initial position
+    pos1.setX(1);
+    bool isWhite = true; // Initial color
+    Piece pieceTest(pos1, isWhite); // Create a Piece with initial position
+    Point pos2; // New position to assign to the piece
+    pos2.setX(8);
 
-///***************************************
-// * TEST ASSIGN PIECE
-// ***************************************/
-//void PieceTest::testAssignPiece() const
-//{
-//    // SETUP
-//    Point firstPosition(1); // Initial position
-//    bool isWhite1 = true; // Initial color
-//    Piece piece1(firstPosition, isWhite1); // First Piece with initial attributes
-//    piece1.nMove = 3; // Example value for nMove
-//    piece1.lastMove = 5; // Example value for lastMove
-//
-//    Point position2(8);
-//    bool isWhite2 = false;
-//    Piece piece2(position2, isWhite2); // Second Piece with different attributes
-//
-//    // EXERCISE
-//    piece2.assign(piece1); // Assign attributes of piece1 to piece2
-//
-//    // VERIFY
-//    assert(piece2.getPosition() == piece1.getPosition()); // Verify if position is copied correctly
-//    assert(piece2.isWhite() == piece1.isWhite()); // Verify if color attribute is copied correctly
-//    assert(piece2.getNMoves() == piece1.getNMoves()); // Verify if nMove is copied correctly
-//    assert(piece2.justMoved() == piece1.justMoved()); // Verify if lastMove is copied correctly
-//}
-//
-///***************************************
-// * TEST IS WHITE
-// ***************************************/
-//void PieceTest::testIsWhite() const
-//{
-//    // SETUP & EXERCISE
-//    Piece whitePiece(Point(1), true); // Create a white piece
-//    Piece blackPiece(Point(2), false); // Create a black piece
-//
-//    // VERIFY
-//    assert(whitePiece.isWhite() == true); // Verify that isWhite() returns true for a white piece
-//    assert(blackPiece.isWhite() == false); // Verify that isWhite() returns false for a black piece
-//}
-//
-///***************************************
-// * TEST IS MOVE
-// ***************************************/
-//void PieceTest::testIsMove() const
-//{
-//    // SETUP
-//    Piece piece(Point(1), true); // Create a piece, assuming it hasn't moved yet
-//
-//    // VERIFY INITIAL STATE
-//    assert(piece.isMove() == false); // Initially, the piece has not moved, so isMove() should return false
-//
-//    // EXERCISE
-//    piece.makeMove(Point(1, 2)); // Move the piece to a new position
-//
-//    // VERIFY AFTER MOVE
-//    assert(piece.isMove() == true); // After moving, isMove() should return true
-//}
-//
-///***************************************
-// * TEST GET N MOVES
-// ***************************************/
-//void PieceTest::testGetNMoves() const
-//{
-//	// SETUP
-//	Piece piece(Point(1), true); // Create a piece, assuming it hasn't moved yet
-//
-//	// VERIFY INITIAL STATE
-//	assert(piece.getNMoves() == 0); // Initially, the piece has not moved, so getNMoves() should return 0
-//
-//	// EXERCISE
-//	piece.assign(Point(8)); // Move the piece to a new position
-//
-//	// VERIFY AFTER MOVE
-//	assert(piece.getNMoves() == 1); // After moving, getNMoves() should return 1
-//}
-//
-///***************************************
-// * TEST GET POSITION
-// ***************************************/
-//void PieceTest::testGetPosition() const
-//{
-//	// SETUP
-//	Piece piece(Point(1), true); // Create a piece, assuming it hasn't moved yet
-//
-//	// VERIFY INITIAL STATE
-//	assert(piece.getPosition() == Point(1)); // Initially, the piece has not moved, so getPosition() should return (1)
-//
-//	// EXERCISE
-//	piece.assign(Point(8)); // Move the piece to a new position
-//
-//	// VERIFY AFTER MOVE
-//	assert(piece.getPosition() == Point(8)); // After moving, getPosition() should return (8)
-//}
-//
-///***************************************
-// * TEST JUST MOVED
-// ***************************************/
-//void PieceTest::testJustMoved() const
-//{
-//	// SETUP
-//	Piece piece(Point(1), true); // Create a piece, justMoved() should be set to false on creation
-//
-//	// VERIFY INITIAL STATE
-//	assert(piece.justMoved() == false); // check that justMoved() is setup correctly before testing, should return false.
-//
-//	// EXERCISE
-//	piece.assign(Point(8)); // Move the piece to a new position
-//
-//	// VERIFY AFTER MOVE
-//	assert(piece.justMoved() == true); // After moving, justMoved() should return true
-//}
-//
-///***************************************
-// * TEST GET PIECE
-// ***************************************/
-//void PieceTest::testGetType() const
-//{
-//	// SETUP
-//	Piece piece(Point(1), false); // Create a piece, assuming it hasn't moved yet
-//    piece.setType('P'); // Set the piece type to Black Pawn
-//
-//	// VERIFY INITIAL STATE
-//	assert(piece.getType() == 'P'); // Initially, the piece has not moved, so getLetter() should return 'P'
-//
-//	// EXERCISE
-//	piece.assign(Point(8)); // Move the piece to a new position
-//
-//	// VERIFY AFTER MOVE
-//	assert(piece.getType() == 'P'); // After moving, getLetter() should return 'P'
-//}
-//
+    // EXERCISE
+    pieceTest.assign(pos2); // Assign new position to the piece
+
+    try {
+    // VERIFY
+    assert(8 == (pieceTest.getPosition()).getX()); // Verify if the piece's position is updated correctly
+    assert(true == pieceTest.isWhite()); // Check if 'isWhite' attribute remains unchanged
+    }
+    catch (const std::exception& e) {
+        //windows pop up message box to show that all test cases have passed
+        MessageBox(NULL, "testAssignPosition FAIL", "Notification", MB_OK | MB_ICONINFORMATION);
+    }
+}
+
+/***************************************
+ * TEST ASSIGN PIECE
+ ***************************************/
+void PieceTest::testAssignPiece() const
+{
+    // SETUP
+    Point pos1; // Initial position
+    pos1.setX(1);
+    bool isWhite1 = true; // Initial color
+    Piece pieceTest1(pos1, isWhite1); // First Piece with initial attributes
+    pieceTest1.setNMoves(3); // Example value for nMove
+
+    Point pos2;
+    pos2.setX(8);
+    bool isWhite2 = false;
+    Piece piece2(pos2, isWhite2); // Second Piece with different attributes
+
+    // EXERCISE
+    piece2.assignPiece(pieceTest1); // Assign attributes of pieceTest to piece2
+    try {
+        // VERIFY
+        assert(piece2.getPosition().getX() == pieceTest1.getPosition().getX()); // Verify if position is copied correctly
+        assert(piece2.isWhite() == pieceTest1.isWhite()); // Verify if color attribute is copied correctly
+        assert(piece2.getNMoves() == pieceTest1.getNMoves()); // Verify if nMove is copied correctly
+        assert(piece2.getHasMoved() == pieceTest1.getHasMoved()); // Verify if lastMove is copied correctly
+    }
+    catch (const std::exception& e) {
+        //windows pop up message box to show that all test cases have passed
+        MessageBox(NULL, "testAssignPiece FAIL", "Notification", MB_OK | MB_ICONINFORMATION);
+    }
+}
+
+/***************************************
+ * TEST IS WHITE
+ ***************************************/
+void PieceTest::testIsWhite() const
+{
+    // SETUP & EXERCISE
+    Point pos;
+    pos.setX(1);
+    Piece whitePiece(pos, true); // Create a white piece
+    Piece blackPiece(pos, false); // Create a black piece
+    try {
+        // VERIFY
+        assert(whitePiece.isWhite() == true); // Verify that isWhite() returns true for a white piece
+        assert(blackPiece.isWhite() == false); // Verify that isWhite() returns false for a black piece
+    }
+    catch (const std::exception& e) {
+        //windows pop up message box to show that all test cases have passed
+        MessageBox(NULL, "testIsWhite FAIL", "Notification", MB_OK | MB_ICONINFORMATION);
+    }
+}
+
+/***************************************
+ * TEST HAS MOVE
+ ***************************************/
+void PieceTest::testIsMove() const
+{
+    // SETUP
+    Point pos;
+    pos.setX(1);
+    Piece piece(pos, true); // Create a piece, assuming it hasn't moved yet
+    Point newPos;
+    newPos.setX(2);
+
+    try {
+    // VERIFY INITIAL STATE
+    assert(piece.getHasMoved() == false); // Initially, the piece has not moved, so isMove() should return false
+
+    // EXERCISE
+    piece.move(newPos); // Move the piece to a new position
+
+    // VERIFY AFTER MOVE
+    assert(piece.getHasMoved() == true); // After moving, isMove() should return true
+
+    }
+    catch (const std::exception& e) {
+        //windows pop up message box to show that all test cases have passed
+        MessageBox(NULL, "testIsWhite FAIL", "Notification", MB_OK | MB_ICONINFORMATION);
+    }
+}
+
+/***************************************
+ * TEST GET N MOVES
+ ***************************************/
+void PieceTest::testGetNMoves() const
+{
+	// SETUP
+    Point pos;
+    pos.setX(1);
+	Piece piece(pos, true); // Create a piece, assuming it hasn't moved yet
+    Point newPos;
+    newPos.setX(8);
+
+	// VERIFY INITIAL STATE
+	assert(piece.getNMoves() == 0); // Initially, the piece has not moved, so getNMoves() should return 0
+
+	// EXERCISE
+	piece.move(newPos); // Move the piece to a new position
+
+    try {
+        // VERIFY AFTER MOVE
+        assert(piece.getNMoves() == 1); // After moving, getNMoves() should return 1
+    }
+    catch (const std::exception& e) {
+        //windows pop up message box to show that all test cases have passed
+        MessageBox(NULL, "testGetNMoves FAIL", "Notification", MB_OK | MB_ICONINFORMATION);
+    }
+}
+
+/***************************************
+ * TEST GET NEW POSITION
+ ***************************************/
+void PieceTest::testGetNewPosition() const
+{
+	// SETUP
+    Point pos;
+    pos.setX(1);
+	Piece piece(pos, true); // Create a piece, assuming it hasn't moved yet
+    Point newPos;
+    newPos.setX(8);
+
+    try {
+        // VERIFY INITIAL STATE
+        assert(piece.getPosition().getX() == 1); // Initially, the piece has not moved, so getPosition() should return (1)
+
+        // EXERCISE
+        piece.move(newPos); // Move the piece to a new position
+
+        // VERIFY AFTER MOVE
+        assert(piece.getPosition().getX() == 8); // After moving, getPosition() should return (8)
+    }
+	catch (const std::exception& e) {
+		//windows pop up message box to show that all test cases have passed
+		MessageBox(NULL, "testGetPosition FAIL", "Notification", MB_OK | MB_ICONINFORMATION);
+	}
+}
+
+/***************************************
+ * TEST JUST MOVED
+ ***************************************/
+void PieceTest::testJustMoved() const
+{
+	// SETUP
+    Point pos;
+    pos.setX(1);
+	Piece piece(pos, true); // Create a piece, justMoved() should be set to false on creation
+    Point newPos;
+    newPos.setX(8);
+
+    try {
+        // VERIFY INITIAL STATE
+        assert(piece.getHasMoved() == false); // check that justMoved() is setup correctly before testing, should return false.
+
+        // EXERCISE
+        piece.move(newPos); // Move the piece to a new position
+
+        // VERIFY AFTER MOVE
+        assert(piece.getHasMoved() == true); // After moving, justMoved() should return true
+    }
+	catch (const std::exception& e) {
+		//windows pop up message box to show that all test cases have passed
+		MessageBox(NULL, "testJustMoved FAIL", "Notification", MB_OK | MB_ICONINFORMATION);
+	}
+}
+
+/***************************************
+ * TEST GET PIECE TYPE
+ ***************************************/
+void PieceTest::testGetType() const
+{
+	// SETUP
+    Point pos;
+    pos.setX(1);
+	Piece piece(pos, false); // Create a piece, assuming it hasn't moved yet
+    piece.setType('P'); // Set the piece type to Black Pawn
+    Point newPos;
+    newPos.setX(8);
+
+
+    try {
+        // VERIFY INITIAL STATE
+        assert(piece.getType() == 'P'); // Initially, the piece has not moved, so getLetter() should return 'P'
+
+        // EXERCISE
+        piece.move(newPos); // Move the piece to a new position
+
+        // VERIFY AFTER MOVE
+        assert(piece.getType() == 'P'); // After moving, getLetter() should still return 'P'
+    }
+    catch (const std::exception& e) {
+        //windows pop up message box to show that all test cases have passed
+	    MessageBox(NULL, "testGetType FAIL", "Notification", MB_OK | MB_ICONINFORMATION);
+    }
+}
+
 ///***************************************
 // * TEST GET MOVES
 // ***************************************/

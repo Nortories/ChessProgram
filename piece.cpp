@@ -11,47 +11,60 @@
 Piece::Piece(const Point& pos, bool isWhite): position(pos), fWhite(isWhite) {
     nMove = 0;
     type = ' ';
+    hasMoved = false;
     // Implementation here
 }
 
-    bool Piece::isWhite() const { 
-        return this->fWhite;
-    }
+void Piece::assign(Point pos) {
+    this->position = pos;
+}
 
-    bool Piece::isMove() const {
-        // Stub 
-        return false;
-    }
+void Piece::assignPiece(const Piece& piece) {
+    this->position = piece.position;
+    this->fWhite = piece.fWhite;
+    this->nMove = piece.nMove;
+    this->type = piece.type;
+}
 
-    int Piece::getNMoves() const {
-        // Stub 
-        return 0;
-    }
+bool Piece::isWhite() const { 
+    return this->fWhite;
+}
 
-    // Implementation of getPosition
-    Point Piece::getPosition() const {
-        return this->position;
-    }
+bool Piece::getHasMoved() const {
+    return this-> hasMoved;
+}
 
-    bool Piece::justMoved() const {
-        // Stub 
-        return false;
-    }
+void Piece::move(Point& pos) {
+	this->position = pos;
+	this->nMove++;
+	this->hasMoved = true;
+};
 
-    char Piece::getLetter() const {
-        // Stub 
-        return '\0';
-    }
-    void Piece::setType() {
-		// Stub
-	}
+int Piece::getNMoves() const {
+    return this->nMove;
+}
 
-    char Piece::getType() const {
-        // Stub
-        char empty = ' ';
-        return empty;
-    }
+void Piece::setNMoves(int n) {
+	this->nMove = n;
+}
 
-    void Piece::display(/* Parameters for display, e.g., ogstream */) {
-        // Stub 
-    }
+// Implementation of getPosition
+Point Piece::getPosition() const {
+    return this->position;
+}
+
+char Piece::getLetter() const {
+    // Stub 
+    return '\0';
+}
+void Piece::setType(char type) {
+	this->type = type;
+}
+
+char Piece::getType() const {
+    return this->type;
+}
+
+void Piece::display(/* Parameters for display, e.g., ogstream */) {
+    // Stub 
+}

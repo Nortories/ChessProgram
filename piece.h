@@ -17,23 +17,26 @@ protected:
     bool fWhite;
     int nMove;
     char type;
+    bool hasMoved;
 
 public:
     // Constructor
     Piece(const Point& pos, bool isWhite);
 
     // Public methods
-    void assign(const Point& pos);
-    void assign(const Piece& piece);
+    void assign(Point pos);
+    void assignPiece(const Piece& piece);
     bool isWhite() const;
-    bool isMove() const;
+    bool getHasMoved() const;
     int getNMoves() const;
+    void setNMoves(int n);
+    void move(Point& pos);
     Point getPosition() const;
-    bool justMoved() const;
     char getLetter() const;
-    void setType();
+    void setType(char type);
     char getType() const;
     void display();
+
 };
 
 #endif // PIECE_H

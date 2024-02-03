@@ -507,14 +507,9 @@ int main(int argc, char** argv)
     * TESTING SPACE FOR TEST RUNNERS
     ********************************/
     TestRunner tr;
-    try {
-        tr.runAll();
-        cerr << "Testing completed successfully" << endl;
-    }
-    catch (...) {
-        cerr << "Testing failed!!! " << endl;
-    }
-    cout << "Testing completed successfully" << endl;
+    tr.runAll();
+
+
    Interface ui("Chess");    
 
    // Initialize the game class

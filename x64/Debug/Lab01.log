@@ -1,2 +1,5 @@
-﻿  pieceTests.cpp
+﻿  board.cpp
+  boardTest.cpp
+  chess.cpp
+  Generating Code...
   Lab01.vcxproj -> C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\Lab01.exe

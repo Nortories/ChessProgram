@@ -506,17 +506,15 @@ int main(int argc, char** argv)
     /********************************
     * TESTING SPACE FOR TEST RUNNERS
     ********************************/
-    std::cout << "RANDOM STUFFF" << endl;
-
     TestRunner tr;
     try {
-        tr.runPieceTest();
-        std::cerr << "Testing completed successfully" << std::endl;
+        tr.runAll();
+        cerr << "Testing completed successfully" << endl;
     }
     catch (...) {
-        std::cerr << "Testing failed!!! " << std::endl;
+        cerr << "Testing failed!!! " << endl;
     }
-    std::cout << "Testing completed successfully" << std::endl;
+    cout << "Testing completed successfully" << endl;
    Interface ui("Chess");    
 
    // Initialize the game class

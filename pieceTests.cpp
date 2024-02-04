@@ -11,6 +11,7 @@
 #include "piece.h"     // Include the Piece class
 #include <cassert>     // Include assert for testing
 #include "point.h"     // Include the Point class
+#include "board.h"     // Include the Board class
 
 
  // Redefine assert to throw an exception instead of aborting
@@ -267,15 +268,19 @@ void PieceTest::testGetType() const
     }
 }
 
-///***************************************
-// * TEST GET MOVES
-// ***************************************/
+/***************************************
+ * TEST GET MOVES
+ ***************************************/
 //void PieceTest::testGetMoves() const
 //{
 //    // SETUP
-//    Board board();
-//    board.reset(); // Reset the board to the initial state
-//    knight = board.getPosition(2); // Get the piece at position 2 (B1) 
+//    Board board;
+//    Point pos;
+//    pos.setX(2);
+//    //board.reset(); // Reset the board to the initial state
+//    Piece knight(pos, true); // Create a piece, assuming it hasn't moved yet
+//    knight.setType('n'); // Set the piece at position 2 (B1) to a knight
+//
 //    move = knight.getMoves(board); // Get the moves for the piece at position 2 (B1)
 //
 //    // VERIFY

@@ -94,6 +94,7 @@ private:
       bool      castleK;   // kingside castle
       bool      castleQ;   // queenside castle
       bool      isWhite;   // white's move?
-      string    error;     // if in error state, what was the bug?  
+      string    error;     // if in error state, what was the bug?
+      int moveData[];	  // for future use
 };
 

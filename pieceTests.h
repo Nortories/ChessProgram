@@ -26,6 +26,8 @@ public:
 		testGetNewPosition();
 		testJustMoved();
 		testGetType();
+        // TODO: Add tests for the Piece class here once Move and Pieces get done
+        //testGetMoves();
 	}
 
 private:
@@ -38,4 +40,5 @@ private:
     void testGetNewPosition() const;
     void testJustMoved() const;
     void testGetType() const;
+    //void testGetMoves() const;
 };

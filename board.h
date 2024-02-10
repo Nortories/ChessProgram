@@ -11,6 +11,7 @@
 #include "uiDraw.h"
 #include "uiInteract.h"
 #include "piece.h"
+#include "space.h"
 #include <array>
 #include <set>
 #include <cassert>
@@ -26,19 +27,21 @@ public:
       ogstream gout;
       Interface ui;
    };
-   char* getBoard() { return board; };
+   //char* getBoard() { return board; };
+   Piece* getBoard() { return board; };
 
-   void selector(Interface *pUI);
 
-   void draw(const Interface& ui);
+   void selector(Interface& pUI);
 
-   bool isNotWhite(const char* board, int row, int col);
-   bool isWhite(const char* board, int row, int col);
-   bool isNotBlack(const char* board, int row, int col);
-   bool isBlack(const char* board, int row, int col);
+   void draw( Interface& ui);
 
-   bool move(char* board, int positionFrom, int positionTo);
-   set <int> getPossibleMoves(const char* board, int location);
+   bool isNotWhite(const Piece* board, int row, int col);
+   bool checkIsWhite(Piece* board, int row, int col);
+   bool isNotBlack(const Piece* board, int row, int col);
+   bool isBlack(Piece* board, int row, int col);
+
+   bool move(Piece* board, int positionFrom, int positionTo);
+   set <int> getPossibleMoves(Piece* board, int location);
 
 
    int getBoardSize();
@@ -54,15 +57,26 @@ private:
    // TODO: change the char type to Piece of the board
    // note this is upside down: 0 row is at the bottom
    //char board[64] = {
-   char board[64] = {
-      'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
-      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
-      'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
+    //char board[64] = {
+    //   'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
+    //   'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+    //   ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+    //   ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+    //   ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+    //   ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+    //   'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
+    //   'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
+    //   };
+
+     Piece board[64] = {
+       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
+       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
+       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
+       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
+       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
+       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
+       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
+       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
    };
    
    int currentMove;

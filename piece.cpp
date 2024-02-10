@@ -8,14 +8,18 @@
 #include "piece.h"
 #include "point.h"
 
-Piece::Piece(const Point& pos, bool isWhite): position(pos), fWhite(isWhite) {
-    nMove = 0;
-    type = ' ';
-    hasMoved = false;
-    // Implementation here
+Piece::Piece(int pos, char type): position(pos), type(type) {
+    this->isSpace = true;
+	this->fWhite = true;
+	this->nMove = 0;
+	this->hasMoved = false;
 }
-
-void Piece::assign(Point pos) {
+Piece::Piece(int pos, bool isWhite) : position(pos), fWhite(isWhite) {
+	this->isSpace = true;
+	this->nMove = 0;
+	this->hasMoved = false;
+}
+void Piece::assign(int pos) {
     this->position = pos;
 }
 
@@ -26,7 +30,7 @@ void Piece::assignPiece(const Piece& piece) {
     this->type = piece.type;
 }
 
-bool Piece::isWhite() const { 
+bool Piece::checkIsWhite() const { 
     return this->fWhite;
 }
 
@@ -34,7 +38,7 @@ bool Piece::getHasMoved() const {
     return this-> hasMoved;
 }
 
-void Piece::move(Point& pos) {
+void Piece::move(int pos) {
 	this->position = pos;
 	this->nMove++;
 	this->hasMoved = true;
@@ -49,7 +53,7 @@ void Piece::setNMoves(int n) {
 }
 
 // Implementation of getPosition
-Point Piece::getPosition() const {
+int Piece::getPosition() const {
     return this->position;
 }
 

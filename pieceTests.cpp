@@ -10,7 +10,6 @@
 #include "pieceTests.h" // Include your test header file
 #include "piece.h"     // Include the Piece class
 #include <cassert>     // Include assert for testing
-#include "point.h"     // Include the Point class
 #include "board.h"     // Include the Board class
 
 
@@ -26,8 +25,7 @@
 void PieceTest::testConstructor() const
 {
     // SETUP
-    Point pos;
-    pos.setX(1);
+    int pos = 1;
     bool isWhite = true;
 
     // EXERCISE
@@ -35,8 +33,8 @@ void PieceTest::testConstructor() const
 
     // VERIFY
     try {
-    assert(1 == (pieceTest.getPosition()).getX());
-    assert(true == pieceTest.isWhite());
+    assert(1 == (pieceTest.getPosition()));
+    assert(true == pieceTest.checkIsWhite());
 }
     catch (const std::exception& e) {
         //windows pop up message box to show that all test cases have passed
@@ -51,20 +49,18 @@ void PieceTest::testConstructor() const
 void PieceTest::testAssignPosition() const
 {
     // SETUP
-    Point pos1; // Initial position
-    pos1.setX(1);
-    bool isWhite = true; // Initial color
+    int pos1 = 1;
+    bool isWhite = true;
     Piece pieceTest(pos1, isWhite); // Create a Piece with initial position
-    Point pos2; // New position to assign to the piece
-    pos2.setX(8);
+    int pos2 = 8;
 
     // EXERCISE
     pieceTest.assign(pos2); // Assign new position to the piece
 
     try {
     // VERIFY
-    assert(8 == (pieceTest.getPosition()).getX()); // Verify if the piece's position is updated correctly
-    assert(true == pieceTest.isWhite()); // Check if 'isWhite' attribute remains unchanged
+    assert(8 == (pieceTest.getPosition())); // Verify if the piece's position is updated correctly
+    assert(true == pieceTest.checkIsWhite()); // Check if 'isWhite' attribute remains unchanged
     }
     catch (const std::exception& e) {
         //windows pop up message box to show that all test cases have passed
@@ -78,14 +74,12 @@ void PieceTest::testAssignPosition() const
 void PieceTest::testAssignPiece() const
 {
     // SETUP
-    Point pos1; // Initial position
-    pos1.setX(1);
+    int pos1 = 1;
     bool isWhite1 = true; // Initial color
     Piece pieceTest1(pos1, isWhite1); // First Piece with initial attributes
     pieceTest1.setNMoves(3); // Example value for nMove
 
-    Point pos2;
-    pos2.setX(8);
+    int pos2 = 8;
     bool isWhite2 = false;
     Piece piece2(pos2, isWhite2); // Second Piece with different attributes
 
@@ -93,8 +87,8 @@ void PieceTest::testAssignPiece() const
     piece2.assignPiece(pieceTest1); // Assign attributes of pieceTest to piece2
     try {
         // VERIFY
-        assert(piece2.getPosition().getX() == pieceTest1.getPosition().getX()); // Verify if position is copied correctly
-        assert(piece2.isWhite() == pieceTest1.isWhite()); // Verify if color attribute is copied correctly
+        assert(piece2.getPosition() == pieceTest1.getPosition()); // Verify if position is copied correctly
+        assert(piece2.checkIsWhite() == pieceTest1.checkIsWhite()); // Verify if color attribute is copied correctly
         assert(piece2.getNMoves() == pieceTest1.getNMoves()); // Verify if nMove is copied correctly
         assert(piece2.getHasMoved() == pieceTest1.getHasMoved()); // Verify if lastMove is copied correctly
     }
@@ -110,14 +104,13 @@ void PieceTest::testAssignPiece() const
 void PieceTest::testIsWhite() const
 {
     // SETUP & EXERCISE
-    Point pos;
-    pos.setX(1);
+    int pos = 1;
     Piece whitePiece(pos, true); // Create a white piece
     Piece blackPiece(pos, false); // Create a black piece
     try {
         // VERIFY
-        assert(whitePiece.isWhite() == true); // Verify that isWhite() returns true for a white piece
-        assert(blackPiece.isWhite() == false); // Verify that isWhite() returns false for a black piece
+        assert(whitePiece.checkIsWhite() == true); // Verify that isWhite() returns true for a white piece
+        assert(blackPiece.checkIsWhite() == false); // Verify that isWhite() returns false for a black piece
     }
     catch (const std::exception& e) {
         //windows pop up message box to show that all test cases have passed
@@ -131,11 +124,9 @@ void PieceTest::testIsWhite() const
 void PieceTest::testIsMove() const
 {
     // SETUP
-    Point pos;
-    pos.setX(1);
+    int pos = 1;
     Piece piece(pos, true); // Create a piece, assuming it hasn't moved yet
-    Point newPos;
-    newPos.setX(2);
+    int newPos = 2;
 
     try {
     // VERIFY INITIAL STATE
@@ -160,11 +151,9 @@ void PieceTest::testIsMove() const
 void PieceTest::testGetNMoves() const
 {
 	// SETUP
-    Point pos;
-    pos.setX(1);
+    int pos = 1;
 	Piece piece(pos, true); // Create a piece, assuming it hasn't moved yet
-    Point newPos;
-    newPos.setX(8);
+    int newPos = 8;
 
 	// VERIFY INITIAL STATE
 	assert(piece.getNMoves() == 0); // Initially, the piece has not moved, so getNMoves() should return 0
@@ -188,21 +177,20 @@ void PieceTest::testGetNMoves() const
 void PieceTest::testGetNewPosition() const
 {
 	// SETUP
-    Point pos;
-    pos.setX(1);
+    int pos = 1;
 	Piece piece(pos, true); // Create a piece, assuming it hasn't moved yet
-    Point newPos;
-    newPos.setX(8);
+    int newPos = 8;
+
 
     try {
         // VERIFY INITIAL STATE
-        assert(piece.getPosition().getX() == 1); // Initially, the piece has not moved, so getPosition() should return (1)
+        assert(piece.getPosition() == 1); // Initially, the piece has not moved, so getPosition() should return (1)
 
         // EXERCISE
         piece.move(newPos); // Move the piece to a new position
 
         // VERIFY AFTER MOVE
-        assert(piece.getPosition().getX() == 8); // After moving, getPosition() should return (8)
+        assert(piece.getPosition() == 8); // After moving, getPosition() should return (8)
     }
 	catch (const std::exception& e) {
 		//windows pop up message box to show that all test cases have passed
@@ -216,11 +204,11 @@ void PieceTest::testGetNewPosition() const
 void PieceTest::testJustMoved() const
 {
 	// SETUP
-    Point pos;
-    pos.setX(1);
+    int pos = 1;
+
 	Piece piece(pos, true); // Create a piece, justMoved() should be set to false on creation
-    Point newPos;
-    newPos.setX(8);
+    int newPos = 8;
+
 
     try {
         // VERIFY INITIAL STATE
@@ -244,12 +232,12 @@ void PieceTest::testJustMoved() const
 void PieceTest::testGetType() const
 {
 	// SETUP
-    Point pos;
-    pos.setX(1);
+    int pos = 1;
+
 	Piece piece(pos, false); // Create a piece, assuming it hasn't moved yet
     piece.setType('P'); // Set the piece type to Black Pawn
-    Point newPos;
-    newPos.setX(8);
+    int newPos = 8;
+
 
 
     try {

@@ -2,6 +2,8 @@
 
 class SmithNotation
 {
+// Smith Notation stuff we might use in a stretch
+
 
 	/********************************************************
  * PARSE

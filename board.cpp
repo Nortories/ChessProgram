@@ -21,8 +21,9 @@ set <int> possible;
  * DRAW
  * Draw the current state of the game
  ***************************************************/
-void Board::draw(const Interface& ui)
+void Board::draw(Interface& ui)
 {
+    selector(ui);
     ogstream gout;
 
     // draw the checkerboard
@@ -39,7 +40,7 @@ void Board::draw(const Interface& ui)
 
     // draw the pieces
     for (int i = 0; i < 64; i++)
-        switch (this->board[i])
+        switch (this->board[i].getType())
         {
         case 'P':
             gout.drawPawn(i, true);
@@ -80,15 +81,15 @@ void Board::draw(const Interface& ui)
         }
 }
 
-void Board::selector(Interface *pUI) {// move 
-    if (move(board, pUI->getPreviousPosition(), pUI->getSelectPosition()))
-        pUI->clearSelectPosition();
+void Board::selector(Interface& pUI) {// move 
+    if (move(board, pUI.getPreviousPosition(), pUI.getSelectPosition()))
+        pUI.clearSelectPosition();
     else
-        possible = getPossibleMoves(board, pUI->getSelectPosition());
+        possible = getPossibleMoves(board, pUI.getSelectPosition());
 
     // if we clicked on a blank spot, then it is not selected
-    if (pUI->getSelectPosition() != -1 && board[pUI->getSelectPosition()] == ' ')
-        pUI->clearSelectPosition();
+    if (pUI.getSelectPosition() != -1 && board[pUI.getSelectPosition()].getType() == ' ')
+        pUI.clearSelectPosition();
 }
 
 
@@ -97,12 +98,12 @@ void Board::selector(Interface *pUI) {// move
  * Is the current location valid and the piece is either
  * black (uppercase) or space
  ***************************************************/
-bool Board::isNotWhite(const char* board, int row, int col)
+bool Board::isNotWhite(const Piece* board, int row, int col)
 {
     // not white if we are off the board or if we are looking at a space
     if (row < 0 || row >= 8 || col < 0 || col >= 8)
         return false;
-    char piece = board[row * 8 + col];
+    char piece = board[row * 8 + col].getType();
 
     return piece == ' ' || (piece >= 'A' && piece <= 'Z');
 }
@@ -111,12 +112,12 @@ bool Board::isNotWhite(const char* board, int row, int col)
  * IS  WHITE
  * Is the current location valid and the piece is white
  ***************************************************/
-bool Board::isWhite(const char* board, int row, int col)
+bool Board::checkIsWhite(Piece* board, int row, int col)
 {
     // not white if we are off the board or if we are looking at a space
     if (row < 0 || row >= 8 || col < 0 || col >= 8)
         return false;
-    char piece = board[row * 8 + col];
+    char piece = board[row * 8 + col].getType();
 
     return (piece >= 'a' && piece <= 'z');
 }
@@ -126,12 +127,12 @@ bool Board::isWhite(const char* board, int row, int col)
  * Is the current location valid and the piece is either
  * white (lowercase) or space
  ***************************************************/
-bool Board::isNotBlack(const char* board, int row, int col)
+bool Board::isNotBlack(const Piece* board, int row, int col)
 {
     // not white if we are off the board or if we are looking at a space
     if (row < 0 || row >= 8 || col < 0 || col >= 8)
         return false;
-    char piece = board[row * 8 + col];
+    char piece = board[row * 8 + col].getType();
 
     return piece == ' ' || (piece >= 'a' && piece <= 'z');
 }
@@ -140,26 +141,25 @@ bool Board::isNotBlack(const char* board, int row, int col)
  * IS  BLACK
  * Is the current location valid and the piece is black
  ***************************************************/
-bool Board::isBlack(const char* board, int row, int col)
+bool Board::isBlack(Piece* board, int row, int col)
 {
     // not white if we are off the board or if we are looking at a space
     if (row < 0 || row >= 8 || col < 0 || col >= 8)
         return false;
-    char piece = board[row * 8 + col];
+    char piece = board[row * 8 + col].getType();
 
     return (piece >= 'A' && piece <= 'Z');
 }
 
 
 
-bool Board::move(char* board, int positionFrom, int positionTo)
+bool Board::move(Piece* boardPieces, int positionFrom, int positionTo)
 {
     // do not move if a move was not indicated
     if (positionFrom == -1 || positionTo == -1)
         return false;
     assert(positionFrom >= 0 && positionFrom < 64);
     assert(positionTo >= 0 && positionTo < 64);
-
 
     // find the set of possible moves from our current location
     set <int> possiblePrevious = getPossibleMoves(board, positionFrom);
@@ -168,7 +168,7 @@ bool Board::move(char* board, int positionFrom, int positionTo)
     if (possiblePrevious.find(positionTo) != possiblePrevious.end())
     {
         board[positionTo] = board[positionFrom];
-        board[positionFrom] = ' ';
+        board[positionFrom] = Space();
         return true;
     }
 
@@ -182,12 +182,12 @@ bool Board::move(char* board, int positionFrom, int positionTo)
  * GET POSSIBLE MOVES
  * Determine all the possible moves for a given chess piece
  *********************************************************/
-set <int> Board::getPossibleMoves(const char* board, int location)
+set <int> Board::getPossibleMoves(Piece* board, int location)
 {
     set <int> possible;
 
     // return the empty set if there simply are no possible moves
-    if (location < 0 || location >= 64 || board[location] == ' ')
+    if (location < 0 || location >= 64 || board[location].getType() == ' ')
         return possible;
     int row = location / 8;  // current location row
     int col = location % 8;  // current location column
@@ -198,31 +198,31 @@ set <int> Board::getPossibleMoves(const char* board, int location)
     //
     // PAWN
     //
-    if (board[location] == 'P')
+    if (board[location].getType() == 'P')
     {
         c = col;
         r = row - 2;
-        if (row == 6 && board[r * 8 + c] == ' ')
+        if (row == 6 && board[r * 8 + c].getType() == ' ')
             possible.insert(r * 8 + c);  // forward two blank spaces
         r = row - 1;
-        if (r >= 0 && board[r * 8 + c] == ' ')
+        if (r >= 0 && board[r * 8 + c].getType() == ' ')
             possible.insert(r * 8 + c);  // forward one black space
         c = col - 1;
-        if (isWhite(board, r, c))
+        if (checkIsWhite(board, r, c))
             possible.insert(r * 8 + c);    // attack left
         c = col + 1;
-        if (isWhite(board, r, c))
+        if (checkIsWhite(board, r, c))
             possible.insert(r * 8 + c);    // attack right
         // what about en-passant and pawn promotion
     }
-    if (board[location] == 'p')
+    if (board[location].getType() == 'p')
     {
         c = col;
         r = row + 2;
-        if (row == 1 && board[r * 8 + c] == ' ')
+        if (row == 1 && board[r * 8 + c].getType() == ' ')
             possible.insert(r * 8 + c);  // forward two blank spaces
         r = row + 1;
-        if (r < 8 && board[r * 8 + c] == ' ')
+        if (r < 8 && board[r * 8 + c].getType() == ' ')
             possible.insert(r * 8 + c);    // forward one blank space
         c = col - 1;
         if (isBlack(board, r, c))
@@ -236,7 +236,7 @@ set <int> Board::getPossibleMoves(const char* board, int location)
     //
     // KNIGHT
     //
-    if (board[location] == 'N' || board[location] == 'n')
+    if (board[location].getType() == 'N' || board[location].getType() == 'n')
     {
         RC moves[8] =
         {
@@ -259,7 +259,7 @@ set <int> Board::getPossibleMoves(const char* board, int location)
     //
     // KING
     //
-    if (board[location] == 'K' || board[location] == 'k')
+    if (board[location].getType() == 'K' || board[location].getType() == 'k')
     {
         RC moves[8] =
         {
@@ -282,7 +282,7 @@ set <int> Board::getPossibleMoves(const char* board, int location)
     //
     // QUEEN
     //
-    if (board[location] == 'Q' || board[location] == 'q')
+    if (board[location].getType() == 'Q' || board[location].getType() == 'q')
     {
         RC moves[8] =
         {
@@ -295,7 +295,7 @@ set <int> Board::getPossibleMoves(const char* board, int location)
             r = row + moves[i].row;
             c = col + moves[i].col;
             while (r >= 0 && r < 8 && c >= 0 && c < 8 &&
-                board[r * 8 + c] == ' ')
+                board[r * 8 + c].getType() == ' ')
             {
                 possible.insert(r * 8 + c);
                 r += moves[i].row;
@@ -311,7 +311,7 @@ set <int> Board::getPossibleMoves(const char* board, int location)
     //
     // ROOK
     //
-    if (board[location] == 'R' || board[location] == 'r')
+    if (board[location].getType() == 'R' || board[location].getType() == 'r')
     {
         RC moves[4] =
         {
@@ -324,7 +324,7 @@ set <int> Board::getPossibleMoves(const char* board, int location)
             r = row + moves[i].row;
             c = col + moves[i].col;
             while (r >= 0 && r < 8 && c >= 0 && c < 8 &&
-                board[r * 8 + c] == ' ')
+                board[r * 8 + c].getType() == ' ')
             {
                 possible.insert(r * 8 + c);
                 r += moves[i].row;
@@ -340,7 +340,7 @@ set <int> Board::getPossibleMoves(const char* board, int location)
     //
     // BISHOP
     //
-    if (board[location] == 'B' || board[location] == 'b')
+    if (board[location].getType() == 'B' || board[location].getType() == 'b')
     {
         RC moves[4] =
         {
@@ -352,7 +352,7 @@ set <int> Board::getPossibleMoves(const char* board, int location)
             r = row + moves[i].row;
             c = col + moves[i].col;
             while (r >= 0 && r < 8 && c >= 0 && c < 8 &&
-                board[r * 8 + c] == ' ')
+                board[r * 8 + c].getType() == ' ')
             {
                 possible.insert(r * 8 + c);
                 r += moves[i].row;

@@ -21,7 +21,7 @@ using namespace std;
  ***************************************************/
 Move::Move() :
       promote(SPACE),       capture(SPACE),       enpassant(false),
-      castleK(false),     castleQ(false),       isWhite(true)
+      castleK(false),     castleQ(false),       checkIsWhite(true)
 {
 }
 
@@ -164,7 +164,7 @@ const Move & Move::operator = (const Move & rhs)
    enpassant = rhs.getEnPassant();
    castleK   = rhs.getCastleK();
    castleQ   = rhs.getCastleQ();
-   isWhite   = rhs.getWhiteMove();
+   checkIsWhite   = rhs.getWhiteMove();
    error     = rhs.error;
    return *this;
 }

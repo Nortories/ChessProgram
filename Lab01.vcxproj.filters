@@ -95,6 +95,12 @@
     <ClInclude Include="smithNotation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="pawn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="space.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

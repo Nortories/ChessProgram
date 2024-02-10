@@ -24,7 +24,7 @@ void MoveTest::constructor_default() const
    assert(!moveTest.enpassant);
    assert(!moveTest.castleK);
    assert(!moveTest.castleQ);
-   assert(moveTest.isWhite);
+   assert(moveTest.checkIsWhite);
 }  // TEARDOWN
 
 
@@ -41,7 +41,7 @@ void MoveTest::read_simple() const
    move.enpassant = true;
    move.castleK   = true;
    move.castleQ   = true;
-   move.isWhite   = false;
+   move.checkIsWhite   = false;
    move.error     = "ERROR";
    // EXERCISE
    move.read(string("e5e6"));
@@ -53,7 +53,7 @@ void MoveTest::read_simple() const
    assert(false == move.enpassant);
    assert(false == move.castleK);
    assert(false == move.castleQ);
-   assert(true  == move.isWhite);
+   assert(true  == move.checkIsWhite);
 }  // TEARDOWN
 
 void MoveTest::read_capture() const
@@ -66,7 +66,7 @@ void MoveTest::read_capture() const
    move.enpassant = true;
    move.castleK   = true;
    move.castleQ   = true;
-   move.isWhite   = false;
+   move.checkIsWhite   = false;
    move.error     = "ERROR";
    // EXERCISE
    move.read(string("e5e6r"));
@@ -78,7 +78,7 @@ void MoveTest::read_capture() const
    assert(false == move.enpassant);
    assert(false == move.castleK);
    assert(false == move.castleQ);
-   assert(true  == move.isWhite);
+   assert(true  == move.checkIsWhite);
 }  // TEARDOWN
 
 void MoveTest::read_enpassant() const
@@ -91,7 +91,7 @@ void MoveTest::read_enpassant() const
    move.enpassant = false;
    move.castleK   = true;
    move.castleQ   = true;
-   move.isWhite   = false;
+   move.checkIsWhite   = false;
    move.error     = "ERROR";
    // EXERCISE
    move.read(string("e5f6E"));
@@ -103,7 +103,7 @@ void MoveTest::read_enpassant() const
    assert(true  == move.enpassant);
    assert(false == move.castleK);
    assert(false == move.castleQ);
-   assert(true  == move.isWhite);
+   assert(true  == move.checkIsWhite);
 }  // TEARDOWN
 
 void MoveTest::read_castleKing() const
@@ -116,7 +116,7 @@ void MoveTest::read_castleKing() const
    move.enpassant = true;
    move.castleK   = true;
    move.castleQ   = true;
-   move.isWhite   = false;
+   move.checkIsWhite   = false;
    move.error     = "ERROR";
    // EXERCISE
    move.read(string("e1g1c"));
@@ -128,7 +128,7 @@ void MoveTest::read_castleKing() const
    assert(false == move.enpassant);
    assert(true  == move.castleK);
    assert(false == move.castleQ);
-   assert(true  == move.isWhite);
+   assert(true  == move.checkIsWhite);
 }  // TEARDOWN
 
 void MoveTest::read_castleQueen() const
@@ -141,7 +141,7 @@ void MoveTest::read_castleQueen() const
    move.enpassant = true;
    move.castleK   = true;
    move.castleQ   = true;
-   move.isWhite   = false;
+   move.checkIsWhite   = false;
    move.error     = "ERROR";
    // EXERCISE
    move.read(string("e1c1C"));
@@ -153,7 +153,7 @@ void MoveTest::read_castleQueen() const
    assert(false == move.enpassant);
    assert(false == move.castleK);
    assert(true  == move.castleQ);
-   assert(true  == move.isWhite);
+   assert(true  == move.checkIsWhite);
 }  // TEARDOWN
 
 void MoveTest::constructString_simple() const
@@ -168,7 +168,7 @@ void MoveTest::constructString_simple() const
    assert(false == move.enpassant);
    assert(false == move.castleK);
    assert(false == move.castleQ);
-   assert(true == move.isWhite);
+   assert(true == move.checkIsWhite);
 }  // TEARDOWN
 
 void MoveTest::assign_simple() const
@@ -181,7 +181,7 @@ void MoveTest::assign_simple() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // EXERCISE
    move = string("e1c1C");
@@ -193,7 +193,7 @@ void MoveTest::assign_simple() const
    assert(false == move.enpassant);
    assert(false == move.castleK);
    assert(true == move.castleQ);
-   assert(true == move.isWhite);
+   assert(true == move.checkIsWhite);
 }  // TEARDOWN
 
  /*************************************
@@ -209,7 +209,7 @@ void MoveTest::getText_simple() const
    move.enpassant = false;
    move.castleK = false;
    move.castleQ = false;
-   move.isWhite = true;
+   move.checkIsWhite = true;
    move.error = "";
    string s;
    // EXERCISE
@@ -223,7 +223,7 @@ void MoveTest::getText_simple() const
    assert(false == move.enpassant);
    assert(false == move.castleK);
    assert(false == move.castleQ);
-   assert(true == move.isWhite);
+   assert(true == move.checkIsWhite);
 }  // TEARDOWN
 
 void MoveTest::getText_capture() const
@@ -236,7 +236,7 @@ void MoveTest::getText_capture() const
    move.enpassant = false;
    move.castleK = false;
    move.castleQ = false;
-   move.isWhite = true;
+   move.checkIsWhite = true;
    move.error = "";
    string s;
    // EXERCISE
@@ -250,7 +250,7 @@ void MoveTest::getText_capture() const
    assert(false == move.enpassant);
    assert(false == move.castleK);
    assert(false == move.castleQ);
-   assert(true == move.isWhite);
+   assert(true == move.checkIsWhite);
 }  // TEARDOWN
 
 void MoveTest::getText_enpassant() const
@@ -263,7 +263,7 @@ void MoveTest::getText_enpassant() const
    move.enpassant = true;
    move.castleK = false;
    move.castleQ = false;
-   move.isWhite = true;
+   move.checkIsWhite = true;
    move.error = "";
    string s;
    // EXERCISE
@@ -277,7 +277,7 @@ void MoveTest::getText_enpassant() const
    assert(true == move.enpassant);
    assert(false == move.castleK);
    assert(false == move.castleQ);
-   assert(true == move.isWhite);
+   assert(true == move.checkIsWhite);
 }  // TEARDOWN
 
 void MoveTest::getText_castleKing() const
@@ -290,7 +290,7 @@ void MoveTest::getText_castleKing() const
    move.enpassant = false;
    move.castleK = true;
    move.castleQ = false;
-   move.isWhite = true;
+   move.checkIsWhite = true;
    move.error = "";
    string s;
    // EXERCISE
@@ -304,7 +304,7 @@ void MoveTest::getText_castleKing() const
    assert(false == move.enpassant);
    assert(true == move.castleK);
    assert(false == move.castleQ);
-   assert(true == move.isWhite);
+   assert(true == move.checkIsWhite);
 }  // TEARDOWN
 
 void MoveTest::getText_castleQueen() const
@@ -317,7 +317,7 @@ void MoveTest::getText_castleQueen() const
    move.enpassant = false;
    move.castleK = false;
    move.castleQ = true;
-   move.isWhite = true;
+   move.checkIsWhite = true;
    move.error = "";
    string s;
    // EXERCISE
@@ -332,7 +332,7 @@ void MoveTest::getText_castleQueen() const
    assert(false == move.enpassant);
    assert(false == move.castleK);
    assert(true == move.castleQ);
-   assert(true == move.isWhite);
+   assert(true == move.checkIsWhite);
 }  // TEARDOWN
 
 
@@ -349,7 +349,7 @@ void MoveTest::letterFromPieceType_space() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    char letter = move.letterFromPieceType(SPACE);
@@ -362,7 +362,7 @@ void MoveTest::letterFromPieceType_space() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::letterFromPieceType_pawn() const
@@ -375,7 +375,7 @@ void MoveTest::letterFromPieceType_pawn() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    char letter = move.letterFromPieceType(PAWN);
@@ -388,7 +388,7 @@ void MoveTest::letterFromPieceType_pawn() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::letterFromPieceType_bishop() const
@@ -401,7 +401,7 @@ void MoveTest::letterFromPieceType_bishop() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    char letter = move.letterFromPieceType(BISHOP);
@@ -414,7 +414,7 @@ void MoveTest::letterFromPieceType_bishop() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::letterFromPieceType_knight() const
@@ -427,7 +427,7 @@ void MoveTest::letterFromPieceType_knight() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    char letter = move.letterFromPieceType(KNIGHT);
@@ -440,7 +440,7 @@ void MoveTest::letterFromPieceType_knight() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::letterFromPieceType_rook() const
@@ -453,7 +453,7 @@ void MoveTest::letterFromPieceType_rook() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    char letter = move.letterFromPieceType(ROOK);
@@ -466,7 +466,7 @@ void MoveTest::letterFromPieceType_rook() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::letterFromPieceType_queen() const
@@ -479,7 +479,7 @@ void MoveTest::letterFromPieceType_queen() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    char letter = move.letterFromPieceType(QUEEN);
@@ -492,7 +492,7 @@ void MoveTest::letterFromPieceType_queen() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::letterFromPieceType_king() const
@@ -505,7 +505,7 @@ void MoveTest::letterFromPieceType_king() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    char letter = move.letterFromPieceType(KING);
@@ -518,7 +518,7 @@ void MoveTest::letterFromPieceType_king() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 /*************************************
@@ -535,7 +535,7 @@ void MoveTest::pieceTypeFromLetter_pawn() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    PieceType pt = move.pieceTypeFromLetter('p');
@@ -548,7 +548,7 @@ void MoveTest::pieceTypeFromLetter_pawn() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::pieceTypeFromLetter_bishop() const
@@ -561,7 +561,7 @@ void MoveTest::pieceTypeFromLetter_bishop() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    PieceType pt = move.pieceTypeFromLetter('b');
@@ -574,7 +574,7 @@ void MoveTest::pieceTypeFromLetter_bishop() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::pieceTypeFromLetter_knight() const
@@ -587,7 +587,7 @@ void MoveTest::pieceTypeFromLetter_knight() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    PieceType pt = move.pieceTypeFromLetter('n');
@@ -600,7 +600,7 @@ void MoveTest::pieceTypeFromLetter_knight() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::pieceTypeFromLetter_rook() const
@@ -613,7 +613,7 @@ void MoveTest::pieceTypeFromLetter_rook() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    PieceType pt = move.pieceTypeFromLetter('r');
@@ -626,7 +626,7 @@ void MoveTest::pieceTypeFromLetter_rook() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::pieceTypeFromLetter_queen() const
@@ -639,7 +639,7 @@ void MoveTest::pieceTypeFromLetter_queen() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    PieceType pt = move.pieceTypeFromLetter('q');
@@ -652,7 +652,7 @@ void MoveTest::pieceTypeFromLetter_queen() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown
 
 void MoveTest::pieceTypeFromLetter_king() const
@@ -665,7 +665,7 @@ void MoveTest::pieceTypeFromLetter_king() const
    move.enpassant = true;
    move.castleK = true;
    move.castleQ = true;
-   move.isWhite = false;
+   move.checkIsWhite = false;
    move.error = "ERROR";
    // exercise
    PieceType pt = move.pieceTypeFromLetter('k');
@@ -678,5 +678,5 @@ void MoveTest::pieceTypeFromLetter_king() const
    assert(true == move.enpassant);
    assert(true == move.castleK);
    assert(true == move.castleQ);
-   assert(false == move.isWhite);
+   assert(false == move.checkIsWhite);
 }  // teardown

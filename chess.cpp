@@ -25,10 +25,7 @@ using namespace std;
  **************************************/
 void callBack(Interface *pUI, void * p)
 {
-
    Board* pBoard = static_cast<Board*>(p);
-
-   pBoard->selector(pUI);
    pBoard->draw(*pUI);
 }
 
@@ -43,13 +40,14 @@ int main(int argc, char** argv)
     /********************************
     * TESTING SPACE FOR TEST RUNNERS
     ********************************/
-    //TestRunner tr;
-    //tr.runAll();
+    
+    TestRunner tr;
+    tr.runAll();
 
-    cout << "Ready to go! ITS GREAT!!" << endl;
+    // Line below is for testing purposes
+    cout << "Ready to go! spaces" << endl;
 
    Interface ui("Kai and Josh Chess Board");    
-
    Board board;
 
    // set everything into action

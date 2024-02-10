@@ -7,31 +7,37 @@
 
 #pragma once
 
-#ifndef PIECE_H
-#define PIECE_H
-#include "point.h"
-
 class Piece {
 protected:
-    Point position;
+    int position;
     bool fWhite;
+    bool isSpace = false;
     int nMove;
     char type;
     bool hasMoved;
 
 public:
     // Constructor
-    Piece(const Point& pos, bool isWhite);
+    Piece(int pos, char type);
+    Piece(int pos, bool isWhite);
+    Piece(int pos, bool isWhite, char type)
+    {
+        position = pos;
+		fWhite = isWhite;
+		this->type = type;
+		nMove = 0;
+		hasMoved = false;
+    };
 
     // Public methods
-    void assign(Point pos);
+    void assign(int pos);
     void assignPiece(const Piece& piece);
-    bool isWhite() const;
+    bool checkIsWhite() const;
     bool getHasMoved() const;
     int getNMoves() const;
     void setNMoves(int n);
-    void move(Point& pos);
-    Point getPosition() const;
+    void move(int pos);
+    int getPosition() const;
     char getLetter() const;
     void setType(char type);
     char getType() const;
@@ -39,4 +45,3 @@ public:
 
 };
 
-#endif // PIECE_H

@@ -40,7 +40,7 @@ class Move
       bool getEnPassant()        const { return enpassant; }
       bool getCastleK()          const { return castleK;   }
       bool getCastleQ()          const { return castleQ;   }
-      bool getWhiteMove()        const { return isWhite;   }
+      bool getWhiteMove()        const { return checkIsWhite;   }
       bool operator == (const Move & rhs)   const;
       bool operator == (const string & rhs) const { return getText() == rhs; }
       bool operator != (const string & rhs) const { return getText() != rhs; }
@@ -49,7 +49,7 @@ class Move
 
       // setters
       void setCapture(PieceType pt)     { capture    = pt;  }
-      void setWhiteMove(bool f)         { isWhite    = f;   }
+      void setWhiteMove(bool f)         { checkIsWhite    = f;   }
       void setSrc(const Position & src) { source     = src; }
       void setDes(const Position & des) { dest       = des; }
       void setEnPassant()               { enpassant  = true;}
@@ -93,7 +93,7 @@ private:
       bool      enpassant; // Enpassant pawn capture
       bool      castleK;   // kingside castle
       bool      castleQ;   // queenside castle
-      bool      isWhite;   // white's move?
+      bool      checkIsWhite;   // white's move?
       string    error;     // if in error state, what was the bug?
       int moveData[];	  // for future use
 };

@@ -28,6 +28,10 @@ public:
    };
    char* getBoard() { return board; };
 
+   void selector(Interface *pUI);
+
+   void draw(const Interface& ui);
+
    bool isNotWhite(const char* board, int row, int col);
    bool isWhite(const char* board, int row, int col);
    bool isNotBlack(const char* board, int row, int col);

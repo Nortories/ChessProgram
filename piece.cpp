@@ -15,9 +15,55 @@
 #include "bishop.h"
 #include "queen.h"
 
+void Piece::draw(int i, Interface& ui){
+    {
 
+        ogstream gout;
 
-bool Piece::move(Piece* board, int positionFrom, int positionTo)
+        // draw the pieces
+        switch (this->getType())
+        {
+        case 'P':
+            gout.drawPawn(i, true);
+            break;
+        case 'p':
+            gout.drawPawn(i, false);
+            break;
+        case 'K':
+            gout.drawKing(i, true);
+            break;
+        case 'k':
+            gout.drawKing(i, false);
+            break;
+        case 'Q':
+            gout.drawQueen(i, true);
+            break;
+        case 'q':
+            gout.drawQueen(i, false);
+            break;
+        case 'R':
+            gout.drawRook(i, true);
+            break;
+        case 'r':
+            gout.drawRook(i, false);
+            break;
+        case 'B':
+            gout.drawBishop(i, true);
+            break;
+        case 'b':
+            gout.drawBishop(i, false);
+            break;
+        case 'N':
+            gout.drawKnight(i, true);
+            break;
+        case 'n':
+            gout.drawKnight(i, false);
+            break;
+        }
+    };
+}
+
+bool Piece::move(Piece* board, int positionFrom, int positionTo, bool isWhiteTurn)
 {
     // do not move if a move was not indicated
     if (positionFrom == -1 || positionTo == -1)
@@ -26,7 +72,7 @@ bool Piece::move(Piece* board, int positionFrom, int positionTo)
     assert(positionTo >= 0 && positionTo < 64);
 
     // find the set of possible moves from our current location
-    set <int> possiblePrevious = getPossibleMoves(board, positionFrom);
+    set <int> possiblePrevious = getPossibleMoves(board, positionFrom, isWhiteTurn);
 
     // only move there is the suggested move is on the set of possible moves
     if (possiblePrevious.find(positionTo) != possiblePrevious.end())
@@ -41,7 +87,7 @@ bool Piece::move(Piece* board, int positionFrom, int positionTo)
     return false;
 
 }
-set <int> Piece::getPossibleMoves(Piece* board, int location)
+set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
 {
     //cout << location;
     //cout << "getPossibleMoves of: " << board[location].getType() <<endl;
@@ -60,7 +106,7 @@ set <int> Piece::getPossibleMoves(Piece* board, int location)
     //
     // PAWN
     //
-    if (board[location].getType() == 'P')
+    if (board[location].getType() == 'P' && !isWhiteTurn)
     {
         
         c = col;
@@ -80,7 +126,7 @@ set <int> Piece::getPossibleMoves(Piece* board, int location)
             possible.insert(r * 8 + c);    // attack right
         // what about en-passant and pawn promotion
     }
-    if (board[location].getType() == 'p')
+    if (board[location].getType() == 'p' && isWhiteTurn)
     {
         c = col;
         r = row + 2;
@@ -101,7 +147,7 @@ set <int> Piece::getPossibleMoves(Piece* board, int location)
     //
     // KNIGHT
     //
-    if (board[location].getType() == 'N' || board[location].getType() == 'n')
+    if ((board[location].getType() == 'N' && !isWhiteTurn) || (board[location].getType() == 'n' && isWhiteTurn))
     {
         RC moves[8] =
         {
@@ -124,7 +170,7 @@ set <int> Piece::getPossibleMoves(Piece* board, int location)
     //
     // KING
     //
-    if (board[location].getType() == 'K' || board[location].getType() == 'k')
+    if ((board[location].getType() == 'K' && !isWhiteTurn) || (board[location].getType() == 'k' && isWhiteTurn))
     {
         RC moves[8] =
         {
@@ -147,7 +193,7 @@ set <int> Piece::getPossibleMoves(Piece* board, int location)
     //
     // QUEEN
     //
-    if (board[location].getType() == 'Q' || board[location].getType() == 'q')
+    if ((board[location].getType() == 'Q' && !isWhiteTurn) || (board[location].getType() == 'q' && isWhiteTurn))
     {
         RC moves[8] =
         {
@@ -176,7 +222,7 @@ set <int> Piece::getPossibleMoves(Piece* board, int location)
     //
     // ROOK
     //
-    if (board[location].getType() == 'R' || board[location].getType() == 'r')
+    if ((board[location].getType() == 'R' && !isWhiteTurn) || (board[location].getType() == 'r' && isWhiteTurn))
     {
         RC moves[4] =
         {
@@ -205,7 +251,7 @@ set <int> Piece::getPossibleMoves(Piece* board, int location)
     //
     // BISHOP
     //
-    if (board[location].getType() == 'B' || board[location].getType() == 'b')
+    if ((board[location].getType() == 'B' && !isWhiteTurn )|| (board[location].getType() == 'b' && isWhiteTurn))
     {
         RC moves[4] =
         {

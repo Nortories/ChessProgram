@@ -58,8 +58,8 @@ public:
     void HasMoved() { hasMoved = true; };
     int getNMoves() const;
     void setNMoves(int n);
-    bool move(Piece* boardPieces, int positionFrom, int positionTo);
-    set <int> getPossibleMoves(Piece* board, int location);
+    bool move(Piece* boardPieces, int positionFrom, int positionTo, bool isWhiteTurn);
+    set <int> getPossibleMoves(Piece* board, int location, bool isWhiteTurn);
     void movePos(int pos);
     int getPosition() const;
     char getLetter() const;
@@ -67,51 +67,7 @@ public:
     char getType() const;
     void display();
 
-    void draw(int i, Interface& ui) {
-        
-        ogstream gout;
-
-        // draw the pieces
-            switch (this->getType())
-            {
-            case 'P':
-                gout.drawPawn(i, true);
-                break;
-            case 'p':
-                gout.drawPawn(i, false);
-                break;
-            case 'K':
-                gout.drawKing(i, true);
-                break;
-            case 'k':
-                gout.drawKing(i, false);
-                break;
-            case 'Q':
-                gout.drawQueen(i, true);
-                break;
-            case 'q':
-                gout.drawQueen(i, false);
-                break;
-            case 'R':
-                gout.drawRook(i, true);
-                break;
-            case 'r':
-                gout.drawRook(i, false);
-                break;
-            case 'B':
-                gout.drawBishop(i, true);
-                break;
-            case 'b':
-                gout.drawBishop(i, false);
-                break;
-            case 'N':
-                gout.drawKnight(i, true);
-                break;
-            case 'n':
-                gout.drawKnight(i, false);
-                break;
-            }
-    };
+    void draw(int i, Interface& ui);
 
 };
 

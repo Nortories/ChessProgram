@@ -33,13 +33,11 @@ public:
 
    void selector(Interface& pUI);
    void draw( Interface& ui);
+
+   void takeTurn() { currentMove++; };
+   bool isWhiteTurn() {return currentMove % 2 == 0;};
    
 private:
-    struct RC
-    {
-        int row;
-        int col;
-    };
 
    
     // member variables

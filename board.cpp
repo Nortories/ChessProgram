@@ -13,10 +13,13 @@
 *****************************************************/
 void Board::selector(Interface& pUI)
 {
-    if (this->board[pUI.getSelectPosition()].move(this->board, pUI.getPreviousPosition(), pUI.getSelectPosition()))
+    if (this->board[pUI.getSelectPosition()].move(this->board, pUI.getPreviousPosition(), pUI.getSelectPosition(), isWhiteTurn()))
+    {
         pUI.clearSelectPosition();
+        this->takeTurn();
+    }
     else
-        possible = this->board[pUI.getSelectPosition()].getPossibleMoves(this->board, pUI.getSelectPosition());
+        possible = this->board[pUI.getSelectPosition()].getPossibleMoves(this->board, pUI.getSelectPosition(), this->isWhiteTurn());
     //cout << possible.size() << endl;
 
     // if we clicked on a blank spot, then it is not selected

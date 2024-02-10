@@ -69,5 +69,6 @@ public:
 
     void draw(int i, Interface& ui);
 
+    void promote(Piece* board,int positionFrom, int location);
 };
 

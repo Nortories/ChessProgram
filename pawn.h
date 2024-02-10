@@ -14,6 +14,4 @@ class Pawn : public Piece
 		else
 			type = 'p';
 		};
-
-
 };

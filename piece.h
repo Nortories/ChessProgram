@@ -6,6 +6,12 @@
  ************************************************************************/
 
 #pragma once
+#include <set>
+#include <array>
+#include <cassert>
+#include <iostream>
+
+using namespace std;
 
 class Piece {
 protected:
@@ -15,6 +21,14 @@ protected:
     int nMove;
     char type;
     bool hasMoved;
+
+    set <int> possible;
+    struct RC
+    {
+        int row;
+        int col;
+    };
+
 
 public:
     // Constructor
@@ -29,7 +43,10 @@ public:
 		hasMoved = false;
     };
 
-    // Public methods
+    bool isNotWhite(const Piece* board, int row, int col);
+    bool checkIsWhite(Piece* board, int row, int col);
+    bool isNotBlack(const Piece* board, int row, int col);
+    bool isBlack(Piece* board, int row, int col);
 
     void assign(int pos);
     void assignPiece(const Piece& piece);
@@ -37,7 +54,9 @@ public:
     bool getHasMoved() const;
     int getNMoves() const;
     void setNMoves(int n);
-    void move(int pos);
+    bool move(Piece* boardPieces, int positionFrom, int positionTo);
+    set <int> getPossibleMoves(Piece* board, int location);
+    void movePos(int pos);
     int getPosition() const;
     char getLetter() const;
     void setType(char type);

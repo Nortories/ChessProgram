@@ -12,6 +12,7 @@
 #include "uiInteract.h"
 #include "piece.h"
 #include "space.h"
+#include "pawn.h"
 #include <array>
 #include <set>
 #include <cassert>
@@ -70,7 +71,7 @@ private:
 
      Piece board[64] = {
        Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
-       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
+       Pawn(), Pawn(), Pawn(), Pawn(), Pawn(), Pawn(), Pawn(), Pawn(),
        Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
        Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
        Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),

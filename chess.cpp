@@ -45,7 +45,7 @@ int main(int argc, char** argv)
 //    tr.runAll();
 
     // Line below is for testing purposes
-    cout << "Ready to go! spaces" << endl;
+    cout << "Ready to go! pawns" << endl;
 
    Interface ui("Kai and Josh Chess Board");    
    Board board;

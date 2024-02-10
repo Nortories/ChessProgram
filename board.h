@@ -28,32 +28,26 @@ class Board
 {   
 public:
 
-   Board() {
+   Board() 
+   {
       currentMove = 0;
       ogstream gout;
       Interface ui;
    };
-   //char* getBoard() { return board; };
+
    Piece* getBoard() { return board; };
 
 
    void selector(Interface& pUI);
-
    void draw( Interface& ui);
-
    bool isNotWhite(const Piece* board, int row, int col);
    bool checkIsWhite(Piece* board, int row, int col);
    bool isNotBlack(const Piece* board, int row, int col);
    bool isBlack(Piece* board, int row, int col);
-
    bool move(Piece* board, int positionFrom, int positionTo);
    set <int> getPossibleMoves(Piece* board, int location);
 
 
-   int getBoardSize();
-   int getCurrentMove();
-   bool whiteTurn();
-//   void display(gout.drawHover, gout.drawSelected);
 //   Piece get();
    void reset() {};
 //   void move(Move move);
@@ -85,6 +79,7 @@ private:
        Rook(0, true), Knight(1, true), Bishop(2, true), Queen(3, true), King(4, true), Bishop(5, true), Knight(6, true), Rook(7, true),
    };
    
+   set <int> possible;
    int currentMove;
    ogstream gout;
    Interface ui;

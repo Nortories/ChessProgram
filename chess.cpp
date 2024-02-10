@@ -1,27 +1,25 @@
 /**********************************************************************
- * GL Demo
- * Just a simple program to demonstrate how to create an Open GL window, 
- * draw something on the window, and accept simple user input
+ * Chess Board - Main
+ * Authors: Kai Smith and Josh Sooaemalelagi
+ * 
+ * This is the main file for the chess board. It will create the board
+ * and run the game.
+ * 
  **********************************************************************/
 
 #include "uiInteract.h"   // for Interface
 #include "uiDraw.h"       // for draw*
-#include <set>            // for STD::SET
-#include <cassert>        // for ASSERT
-#include <fstream>        // for IFSTREAM
-#include <string>         // for STRING
 #include "testRunner.h"     // for testing
-#include <exception>       // for exception
-#include <iostream>        // for cerr
 #include "board.h"		 // for board
 using namespace std;
 
 /*************************************
- * All the interesting work happens here, when
- * I get called back from OpenGL to draw a frame.
- * When I am finished drawing, then the graphics
- * engine will wait until the proper amount of
- * time has passed and put the drawing on the screen.
+ * CALLBACK
+ * 
+ * This is the callback function that will be called by the
+ * interface.  It will be passed a pointer to the interface
+ * and a pointer to the board.  It will then draw the board.
+ * 
  **************************************/
 void callBack(Interface *pUI, void * p)
 {
@@ -30,9 +28,12 @@ void callBack(Interface *pUI, void * p)
 }
 
 /*********************************
- * Main is pretty sparse.  Just initialize
- * my Demo type and call the display engine.
- * That is all!
+ * MAIN
+ * 
+ * Main is pretty sparse. Just create the interface
+ * and run it. It will call the callback function
+ * which will then draw the board.
+ *
  *********************************/
 
 int main(int argc, char** argv)
@@ -47,7 +48,7 @@ int main(int argc, char** argv)
     // Line below is for testing purposes
     cout << "Ready to go! pawns" << endl;
 
-   Interface ui("Kai and Josh Chess Board");    
+   Interface ui("Kai & Josh Chess Board");    // Create a window
    Board board;
 
    // set everything into action

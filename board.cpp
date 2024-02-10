@@ -16,20 +16,19 @@ struct RC
     int col;
 };
 
-set <int> possible;
 /***************************************************
  * DRAW
  * Draw the current state of the game
  ***************************************************/
 void Board::draw(Interface& ui)
 {
-    selector(ui);
     ogstream gout;
 
     // draw the checkerboard
     gout.drawBoard();
 
     // draw any selections
+    selector(ui);
     gout.drawHover(ui.getHoverPosition());
     gout.drawSelected(ui.getSelectPosition());
 
@@ -106,7 +105,7 @@ bool Board::isNotWhite(const Piece* board, int row, int col)
         return false;
     char piece = board[row * 8 + col].getType();
 
-    return piece == ' ' || (piece >= 'A' && piece <= 'Z');
+    return piece == ' ' || (piece >= 'A' && piece <= 'Z'); 
 }
 
 /****************************************************
@@ -152,7 +151,10 @@ bool Board::isBlack(Piece* board, int row, int col)
     return (piece >= 'A' && piece <= 'Z');
 }
 
-
+/****************************************************
+ * MOVE
+ * Move a piece from one location to another
+ ***************************************************/
 
 bool Board::move(Piece* boardPieces, int positionFrom, int positionTo)
 {
@@ -369,34 +371,4 @@ set <int> Board::getPossibleMoves(Piece* board, int location)
     return possible;
 }
 
-int Board::getBoardSize() { return sizeof(board) / sizeof(board[0]); };
 
-int Board::getCurrentMove()
-{
-	return this->currentMove;
-}
-
-//Board::whiteTurn()
-//{
-//
-//}
-//
-//Board::display()
-//{
-//
-//}
-//
-//Board::reset()
-//{
-//
-//}
-//
-//Board::move()
-//{
-//
-//}
-//
-//Board::assign()
-//{
-//
-//}

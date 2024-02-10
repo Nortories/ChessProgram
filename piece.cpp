@@ -18,6 +18,7 @@ Piece::Piece(int pos, char type): position(pos), type(type)
 
 Piece::Piece(int pos, bool isWhite) : position(pos), fWhite(isWhite)
 {
+    this->type = ' ';
 	this->isSpace = true;
 	this->nMove = 0;
 	this->hasMoved = false;

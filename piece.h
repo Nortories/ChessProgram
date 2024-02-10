@@ -30,6 +30,7 @@ public:
     };
 
     // Public methods
+
     void assign(int pos);
     void assignPiece(const Piece& piece);
     bool checkIsWhite() const;

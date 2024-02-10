@@ -117,8 +117,11 @@
     <ClCompile Include="uiInteract.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bishop.h" />
     <ClInclude Include="board.h" />
     <ClInclude Include="boardTest.h" />
+    <ClInclude Include="king.h" />
+    <ClInclude Include="knight.h" />
     <ClInclude Include="move.h" />
     <ClInclude Include="pawn.h" />
     <ClInclude Include="piece.h" />
@@ -126,6 +129,8 @@
     <ClInclude Include="pieceType.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="position.h" />
+    <ClInclude Include="queen.h" />
+    <ClInclude Include="rook.h" />
     <ClInclude Include="smithNotation.h" />
     <ClInclude Include="space.h" />
     <ClInclude Include="testMove.h" />

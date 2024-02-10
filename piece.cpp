@@ -33,6 +33,8 @@ bool Piece::move(Piece* board, int positionFrom, int positionTo)
     {
         board[positionTo] = board[positionFrom];
         board[positionFrom] = Space();
+        this->hasMoved = true;
+        cout << board[positionFrom].getType() <<" Moved from " << positionFrom << " to " << positionTo << endl;
         return true;
     }
 
@@ -41,6 +43,8 @@ bool Piece::move(Piece* board, int positionFrom, int positionTo)
 }
 set <int> Piece::getPossibleMoves(Piece* board, int location)
 {
+    //cout << location;
+    //cout << "getPossibleMoves of: " << board[location].getType() <<endl;
     set <int> possible;
 
     // return the empty set if there simply are no possible moves
@@ -52,15 +56,19 @@ set <int> Piece::getPossibleMoves(Piece* board, int location)
     int c;                   // the column we are checking
     bool amBlack = isBlack(board, row, col);
 
+
     //
     // PAWN
     //
     if (board[location].getType() == 'P')
     {
+        
         c = col;
         r = row - 2;
-        if (row == 6 && board[r * 8 + c].getType() == ' ')
+        
+        if (row == 6 && board[r * 8 + c].getType() == ' ') {
             possible.insert(r * 8 + c);  // forward two blank spaces
+        }
         r = row - 1;
         if (r >= 0 && board[r * 8 + c].getType() == ' ')
             possible.insert(r * 8 + c);  // forward one black space

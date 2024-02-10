@@ -10,6 +10,8 @@
 #include <array>
 #include <cassert>
 #include <iostream>
+#include "uiDraw.h"
+#include "uiInteract.h"
 
 using namespace std;
 
@@ -20,9 +22,10 @@ protected:
     bool isSpace = false;
     int nMove;
     char type;
-    bool hasMoved;
+    bool hasMoved = false;
 
     set <int> possible;
+
     struct RC
     {
         int row;
@@ -52,6 +55,7 @@ public:
     void assignPiece(const Piece& piece);
     bool checkIsWhite() const;
     bool getHasMoved() const;
+    void HasMoved() { hasMoved = true; };
     int getNMoves() const;
     void setNMoves(int n);
     bool move(Piece* boardPieces, int positionFrom, int positionTo);
@@ -62,6 +66,52 @@ public:
     void setType(char type);
     char getType() const;
     void display();
+
+    void draw(int i, Interface& ui) {
+        
+        ogstream gout;
+
+        // draw the pieces
+            switch (this->getType())
+            {
+            case 'P':
+                gout.drawPawn(i, true);
+                break;
+            case 'p':
+                gout.drawPawn(i, false);
+                break;
+            case 'K':
+                gout.drawKing(i, true);
+                break;
+            case 'k':
+                gout.drawKing(i, false);
+                break;
+            case 'Q':
+                gout.drawQueen(i, true);
+                break;
+            case 'q':
+                gout.drawQueen(i, false);
+                break;
+            case 'R':
+                gout.drawRook(i, true);
+                break;
+            case 'r':
+                gout.drawRook(i, false);
+                break;
+            case 'B':
+                gout.drawBishop(i, true);
+                break;
+            case 'b':
+                gout.drawBishop(i, false);
+                break;
+            case 'N':
+                gout.drawKnight(i, true);
+                break;
+            case 'n':
+                gout.drawKnight(i, false);
+                break;
+            }
+    };
 
 };
 

@@ -13,13 +13,14 @@
 *****************************************************/
 void Board::selector(Interface& pUI)
 {
-    if (board[pUI.getSelectPosition()].move(board, pUI.getPreviousPosition(), pUI.getSelectPosition()))
+    if (this->board[pUI.getSelectPosition()].move(this->board, pUI.getPreviousPosition(), pUI.getSelectPosition()))
         pUI.clearSelectPosition();
     else
-        possible = board[pUI.getSelectPosition()].getPossibleMoves(board, pUI.getSelectPosition());
+        possible = this->board[pUI.getSelectPosition()].getPossibleMoves(this->board, pUI.getSelectPosition());
+    //cout << possible.size() << endl;
 
     // if we clicked on a blank spot, then it is not selected
-    if (pUI.getSelectPosition() != -1 && board[pUI.getSelectPosition()].getType() == ' ')
+    if (pUI.getSelectPosition() != -1 && this->board[pUI.getSelectPosition()].getType() == ' ')
         pUI.clearSelectPosition();
 }
 
@@ -44,48 +45,6 @@ void Board::draw(Interface& ui)
     for (it = possible.begin(); it != possible.end(); ++it)
         gout.drawPossible(*it);
 
-    // draw the pieces
     for (int i = 0; i < 64; i++)
-        switch (this->board[i].getType())
-        {
-        case 'P':
-            gout.drawPawn(i, true);
-            break;
-        case 'p':
-            gout.drawPawn(i, false);
-            break;
-        case 'K':
-            gout.drawKing(i, true);
-            break;
-        case 'k':
-            gout.drawKing(i, false);
-            break;
-        case 'Q':
-            gout.drawQueen(i, true);
-            break;
-        case 'q':
-            gout.drawQueen(i, false);
-            break;
-        case 'R':
-            gout.drawRook(i, true);
-            break;
-        case 'r':
-            gout.drawRook(i, false);
-            break;
-        case 'B':
-            gout.drawBishop(i, true);
-            break;
-        case 'b':
-            gout.drawBishop(i, false);
-            break;
-        case 'N':
-            gout.drawKnight(i, true);
-            break;
-        case 'n':
-            gout.drawKnight(i, false);
-            break;
-        }
+        this->board[i].draw(i, ui);
 }
-
-
-

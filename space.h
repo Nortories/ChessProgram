@@ -5,6 +5,6 @@ class Space : public Piece
 {
 	public:
 	//constructor
-	Space(int pos) : Piece(pos, type) {};
+	Space(int pos) : Piece(pos, ' ') {};
 	Space() : Piece(0, ' ') {};
 };

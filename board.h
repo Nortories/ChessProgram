@@ -35,13 +35,14 @@ public:
    void draw( Interface& ui);
    
 private:
+    struct RC
+    {
+        int row;
+        int col;
+    };
 
+   
     // member variables
-    set <int> possible;
-    int currentMove;
-    ogstream gout;
-    Interface ui;
-
     // board is a 1D array of 64 pieces (8x8) chess board
      Piece board[64] = {
        Rook(56, false), Knight(57, false), Bishop(58, false), Queen(59, false), King(60, false), Bishop(61, false), Knight(62, false), Rook(63, false),
@@ -59,7 +60,12 @@ private:
        Pawn(8, true),   Pawn(9, true),     Pawn(10, true),    Pawn(11, true),   Pawn(12, true),  Pawn(13, true),    Pawn(14, true),    Pawn(15, true),
 
        Rook(0, true),   Knight(1, true),   Bishop(2, true),   Queen(3, true),   King(4, true),   Bishop(5, true),   Knight(6, true),   Rook(7, true)
-   };
+       }; 
+
+    set <int> possible;
+    int currentMove;
+    ogstream gout;
+    Interface ui;
 
 // TODO: change the char type to Piece of the board
 // note this is upside down: 0 row is at the bottom

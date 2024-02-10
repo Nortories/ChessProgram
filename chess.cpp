@@ -13,6 +13,7 @@
 #include "testRunner.h"     // for testing
 #include <exception>       // for exception
 #include <iostream>        // for cerr
+#include "board.h"		 // for board
 using namespace std;
 
 /***********************************************
@@ -514,31 +515,33 @@ int main(int argc, char** argv)
 
    // Initialize the game class
    // note this is upside down: 0 row is at the bottom
-   char board[64] = {
-      'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
-      'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
-      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      // ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
-      'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
-   };
+   //char board[64] = {
+   //   'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
+   //   'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',
+   //   ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+   //   ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+   //   ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+   //   ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+   //   // ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+   //   'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
+   //   'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
+   //};
+
+   Board board;
    
 #ifdef _WIN32
  //  int    argc;
  //  LPWSTR * argv = CommandLineToArgvW(GetCommandLineW(), &argc);
  //  string filename = argv[1];
    if (__argc == 2)
-      readFile(__argv[1], board);
+      readFile(__argv[1], board.getBoard());
 #else // !_WIN32
    if (argc == 2)
-      readFile(argv[1], board);
+      readFile(argv[1], board.getBoard());
 #endif // !_WIN32
 
    // set everything into action
-   ui.run(callBack, board);             
+   ui.run(callBack, board.getBoard());             
 
    return 0;
 }

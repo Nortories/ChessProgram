@@ -1,2 +1,14 @@
-﻿  pieceTests.cpp
-  Lab01.vcxproj -> C:\Users\sooae\Documents\Github Repos\SharedRepos\ChessProgram\x64\Debug\Lab01.exe
+﻿  board.cpp
+  boardTest.cpp
+  chess.cpp
+  move.cpp
+  piece.cpp
+  pieceTests.cpp
+  position.cpp
+  testMove.cpp
+  testPosition.cpp
+  uiDraw.cpp
+  uiInteract.cpp
+  Generating Code...
+  LINK : C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\x64\Debug\Lab01.exe not found or not built by the last incremental link; performing full link
+  Lab01.vcxproj -> C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\x64\Debug\Lab01.exe

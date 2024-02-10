@@ -6,6 +6,7 @@
 //
 #include "board.h"
 
+
 int Board::getBoardSize() { return sizeof(board) / sizeof(board[0]); };
 
 int Board::getCurrentMove()

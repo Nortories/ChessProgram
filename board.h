@@ -7,9 +7,13 @@
 
 #pragma once
 
+#include <iostream>
 #include "uiDraw.h"
 #include "uiInteract.h"
 #include "piece.h"
+#include <array>
+
+using namespace std;
 
 class Board
 {   
@@ -20,7 +24,7 @@ public:
       ogstream gout;
       Interface ui;
    };
-
+   char* getBoard() { return board; };
    int getBoardSize();
    int getCurrentMove();
    bool whiteTurn() {};
@@ -39,7 +43,6 @@ private:
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
-      // ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
       'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P',
       'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'
    };

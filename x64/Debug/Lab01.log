@@ -1,14 +1,7 @@
-﻿  board.cpp
-  boardTest.cpp
-  chess.cpp
-  move.cpp
-  piece.cpp
+﻿  chess.cpp
+C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\chess.cpp(418,6): error C2664: 'void Interface::run(void (__cdecl *)(Interface *,void *),void *)': cannot convert argument 1 from 'void (__cdecl *)(Board *,Interface *,void *)' to 'void (__cdecl *)(Interface *,void *)'
+C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\chess.cpp(418,11): message : None of the functions with this name in scope match the target type
+C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\uiInteract.h(37,9): message : see declaration of 'Interface::run'
+C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\chess.cpp(418,6): message : while trying to match the argument list '(overloaded-function, char *)'
   pieceTests.cpp
-  position.cpp
-  testMove.cpp
-  testPosition.cpp
-  uiDraw.cpp
-  uiInteract.cpp
   Generating Code...
-  LINK : C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\x64\Debug\Lab01.exe not found or not built by the last incremental link; performing full link
-  Lab01.vcxproj -> C:\Users\Master-of-Code\Documents\GitHub repos\CHESS SHARED REPO\ChessProgram\x64\Debug\Lab01.exe

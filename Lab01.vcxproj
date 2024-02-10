@@ -125,6 +125,7 @@
     <ClInclude Include="pieceType.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="position.h" />
+    <ClInclude Include="smithNotation.h" />
     <ClInclude Include="testMove.h" />
     <ClInclude Include="testPosition.h" />
     <ClInclude Include="testRunner.h" />

@@ -12,6 +12,8 @@
 #include "uiInteract.h"
 #include "piece.h"
 #include <array>
+#include <set>
+#include <cassert>
 
 using namespace std;
 
@@ -25,6 +27,16 @@ public:
       Interface ui;
    };
    char* getBoard() { return board; };
+
+   bool isNotWhite(const char* board, int row, int col);
+   bool isWhite(const char* board, int row, int col);
+   bool isNotBlack(const char* board, int row, int col);
+   bool isBlack(const char* board, int row, int col);
+
+   bool move(char* board, int positionFrom, int positionTo);
+   set <int> getPossibleMoves(const char* board, int location);
+
+
    int getBoardSize();
    int getCurrentMove();
    bool whiteTurn() {};
@@ -36,6 +48,8 @@ public:
    
 private:
    // TODO: change the char type to Piece of the board
+   // note this is upside down: 0 row is at the bottom
+   //char board[64] = {
    char board[64] = {
       'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r',
       'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p',

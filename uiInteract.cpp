@@ -233,6 +233,7 @@ bool          Interface::initialized   = false;
 double        Interface::timePeriod    = 0.2; // default to 5 frames/second
 unsigned long Interface::nextTick      = 0;        // redraw now please
 void *        Interface::p             = NULL;
+void *        Interface::board            = NULL;
 void (*Interface::callBack)(Interface *, void *) = NULL;
 
 /************************************************************************
@@ -299,6 +300,7 @@ void Interface::run(void (*callBack)(Interface *, void *), void *p)
    // setup the callbacks
    this->p = p;
    this->callBack = callBack;
+   //this->board = board;
 
    glutMainLoop();
 

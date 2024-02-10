@@ -99,6 +99,7 @@ public:
    }
 
    static void* p;                   // for client
+   static void* board;               // for board object
    static void (*callBack)(Interface*, void*);
 
 private:
@@ -114,6 +115,8 @@ private:
    
    static int widthScreen;
    static int heightScreen;
+
+  
 };
 
 /************************************************************************

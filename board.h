@@ -46,7 +46,7 @@ public:
 
    int getBoardSize();
    int getCurrentMove();
-   bool whiteTurn() {};
+   bool whiteTurn();
 //   void display(gout.drawHover, gout.drawSelected);
 //   Piece get();
    void reset() {};

@@ -1,7 +1,8 @@
 #pragma once
 #include "piece.h"
 
-class Space : public Piece {
+class Space : public Piece
+{
 	public:
 	char type = ' ';
 	//constructor

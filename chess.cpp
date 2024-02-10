@@ -41,8 +41,8 @@ int main(int argc, char** argv)
     * TESTING SPACE FOR TEST RUNNERS
     ********************************/
     
-    TestRunner tr;
-    tr.runAll();
+//    TestRunner tr;
+//    tr.runAll();
 
     // Line below is for testing purposes
     cout << "Ready to go! spaces" << endl;

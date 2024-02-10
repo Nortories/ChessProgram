@@ -1,7 +1,8 @@
 #pragma once
 #include "piece.h"
 
-class Pawn : public Piece {
+class Pawn : public Piece
+{
 
 	//constructor
 	Pawn(int pos, bool isWhite) : Piece(pos , isWhite, type) {

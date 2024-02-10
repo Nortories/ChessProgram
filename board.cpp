@@ -81,7 +81,8 @@ void Board::draw(Interface& ui)
         }
 }
 
-void Board::selector(Interface& pUI) {// move 
+void Board::selector(Interface& pUI)
+{   // move 
     if (move(board, pUI.getPreviousPosition(), pUI.getSelectPosition()))
         pUI.clearSelectPosition();
     else

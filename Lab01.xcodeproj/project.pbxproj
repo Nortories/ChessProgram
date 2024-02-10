@@ -13,6 +13,7 @@
 		15B9172B2B6EC93D00AC9802 /* testPosition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15B9171F2B6EC93D00AC9802 /* testPosition.cpp */; };
 		15B9172C2B6EC93D00AC9802 /* move.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15B917262B6EC93D00AC9802 /* move.cpp */; };
 		15B9172D2B6EC93D00AC9802 /* pieceTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15B917272B6EC93D00AC9802 /* pieceTests.cpp */; };
+		15FE33C62B7750300096B2FB /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15FE33C22B774FC90096B2FB /* board.cpp */; };
 		C12A3BF5255D7A5500C22728 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12A3BF4255D7A5500C22728 /* GLUT.framework */; };
 		C12A3BF7255D7A5C00C22728 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12A3BF6255D7A5C00C22728 /* OpenGL.framework */; };
 		C13286172578104100FCEC47 /* chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C13286112578104000FCEC47 /* chess.cpp */; };
@@ -47,6 +48,14 @@
 		15B917252B6EC93D00AC9802 /* position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = position.h; sourceTree = "<group>"; };
 		15B917262B6EC93D00AC9802 /* move.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = move.cpp; sourceTree = "<group>"; };
 		15B917272B6EC93D00AC9802 /* pieceTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pieceTests.cpp; sourceTree = "<group>"; };
+		15FE33BE2B774FC90096B2FB /* boardTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = boardTest.h; sourceTree = "<group>"; };
+		15FE33BF2B774FC90096B2FB /* board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = board.h; sourceTree = "<group>"; };
+		15FE33C02B774FC90096B2FB /* boardTest.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = boardTest.cpp; sourceTree = "<group>"; };
+		15FE33C12B774FC90096B2FB /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		15FE33C22B774FC90096B2FB /* board.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = board.cpp; sourceTree = "<group>"; };
+		15FE33C32B774FC90096B2FB /* space.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = space.h; sourceTree = "<group>"; };
+		15FE33C42B774FC90096B2FB /* smithNotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = smithNotation.h; sourceTree = "<group>"; };
+		15FE33C52B774FC90096B2FB /* pawn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pawn.h; sourceTree = "<group>"; };
 		C12A3BDD255D79CF00C22728 /* Lab01 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab01; sourceTree = BUILT_PRODUCTS_DIR; };
 		C12A3BF4255D7A5500C22728 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		C12A3BF6255D7A5C00C22728 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -74,6 +83,14 @@
 		C12A3BD4255D79CF00C22728 = {
 			isa = PBXGroup;
 			children = (
+				15FE33C22B774FC90096B2FB /* board.cpp */,
+				15FE33BF2B774FC90096B2FB /* board.h */,
+				15FE33C02B774FC90096B2FB /* boardTest.cpp */,
+				15FE33BE2B774FC90096B2FB /* boardTest.h */,
+				15FE33C12B774FC90096B2FB /* Header.h */,
+				15FE33C52B774FC90096B2FB /* pawn.h */,
+				15FE33C42B774FC90096B2FB /* smithNotation.h */,
+				15FE33C32B774FC90096B2FB /* space.h */,
 				15B917262B6EC93D00AC9802 /* move.cpp */,
 				15B9171B2B6EC93D00AC9802 /* move.h */,
 				15B9171C2B6EC93D00AC9802 /* piece.cpp */,
@@ -178,6 +195,7 @@
 				15B9172A2B6EC93D00AC9802 /* testMove.cpp in Sources */,
 				15B9172D2B6EC93D00AC9802 /* pieceTests.cpp in Sources */,
 				C13286182578104100FCEC47 /* uiDraw.cpp in Sources */,
+				15FE33C62B7750300096B2FB /* board.cpp in Sources */,
 				15B917282B6EC93D00AC9802 /* position.cpp in Sources */,
 				C13286192578104100FCEC47 /* uiInteract.cpp in Sources */,
 				15B9172B2B6EC93D00AC9802 /* testPosition.cpp in Sources */,

@@ -10,13 +10,9 @@ class Pawn : public Piece
 
 		Pawn(int pos, bool isWhite) : Piece(pos , isWhite, type) {
 		if (checkIsWhite())
-		{
 			type = 'P';
-		}
 		else
-		{
 			type = 'p';
-		}
 		};
 
 

@@ -56,6 +56,11 @@
 		15FE33C32B774FC90096B2FB /* space.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = space.h; sourceTree = "<group>"; };
 		15FE33C42B774FC90096B2FB /* smithNotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = smithNotation.h; sourceTree = "<group>"; };
 		15FE33C52B774FC90096B2FB /* pawn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pawn.h; sourceTree = "<group>"; };
+		15FE33C72B77618A0096B2FB /* knight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = knight.h; sourceTree = "<group>"; };
+		15FE33C82B77623A0096B2FB /* queen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = queen.h; sourceTree = "<group>"; };
+		15FE33C92B77624A0096B2FB /* rook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rook.h; sourceTree = "<group>"; };
+		15FE33CA2B7762550096B2FB /* bishop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bishop.h; sourceTree = "<group>"; };
+		15FE33CB2B77629D0096B2FB /* king.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = king.h; sourceTree = "<group>"; };
 		C12A3BDD255D79CF00C22728 /* Lab01 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab01; sourceTree = BUILT_PRODUCTS_DIR; };
 		C12A3BF4255D7A5500C22728 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		C12A3BF6255D7A5C00C22728 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -83,6 +88,11 @@
 		C12A3BD4255D79CF00C22728 = {
 			isa = PBXGroup;
 			children = (
+				15FE33CB2B77629D0096B2FB /* king.h */,
+				15FE33CA2B7762550096B2FB /* bishop.h */,
+				15FE33C92B77624A0096B2FB /* rook.h */,
+				15FE33C82B77623A0096B2FB /* queen.h */,
+				15FE33C72B77618A0096B2FB /* knight.h */,
 				15FE33C22B774FC90096B2FB /* board.cpp */,
 				15FE33BF2B774FC90096B2FB /* board.h */,
 				15FE33C02B774FC90096B2FB /* boardTest.cpp */,

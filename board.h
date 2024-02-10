@@ -13,6 +13,11 @@
 #include "piece.h"
 #include "space.h"
 #include "pawn.h"
+#include "knight.h"
+#include "king.h"
+#include "rook.h"
+#include "bishop.h"
+#include "queen.h"
 #include <array>
 #include <set>
 #include <cassert>
@@ -70,14 +75,14 @@ private:
     //   };
 
      Piece board[64] = {
-       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
-       Pawn(), Pawn(), Pawn(), Pawn(), Pawn(), Pawn(), Pawn(), Pawn(),
-       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
-       Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
+       Rook(56, false), Knight(57, false), Bishop(58, false), Queen(59, false), King(60, false), Bishop(61, false), Knight(62, false), Rook(63, false),
+       Pawn(48, false), Pawn(49, false), Pawn(50, false), Pawn(51, false), Pawn(52, false), Pawn(53, false), Pawn(54, false), Pawn(55, false),
        Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
        Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
        Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
        Space(), Space(), Space(), Space(), Space(), Space(), Space(), Space(),
+       Pawn(8, true), Pawn(9, true), Pawn(10, true), Pawn(11, true), Pawn(12, true), Pawn(13, true), Pawn(14, true), Pawn(15, true),
+       Rook(0, true), Knight(1, true), Bishop(2, true), Queen(3, true), King(4, true), Bishop(5, true), Knight(6, true), Rook(7, true),
    };
    
    int currentMove;

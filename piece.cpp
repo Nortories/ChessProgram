@@ -63,21 +63,6 @@ void Piece::draw(int i, Interface& ui){
     };
 }
 
-void Piece::promote(Piece* board, int positionFrom, int positionTo) {
-    cout << board[positionFrom].getType() << " positionTo " << positionTo << endl;
-
-    // Check for valid promotion conditions and ensure positionFrom points to a valid object
-    if (board[positionFrom].getType() == 'P' && positionTo < 8) {
-        cout << "Promotion up" << endl;
-        Piece thisBoard = board[positionTo];
-        thisBoard = Queen(positionTo, true);
-    }
-    //else if (board[positionFrom].getType() == 'p' && positionTo > 55) {
-    //    cout << "Promotion down" << endl;
-    //    delete board[positionTo]; // Correct if board[positionTo] was dynamically allocated
-    //    board[positionTo] = new Queen(positionTo, false); // Dynamically allocate a new Queen
-    //}
-}
 
 
 
@@ -95,7 +80,6 @@ bool Piece::move(Piece* board, int positionFrom, int positionTo, bool isWhiteTur
     // only move there is the suggested move is on the set of possible moves
     if (possiblePrevious.find(positionTo) != possiblePrevious.end())
     {
-        promote(board, positionFrom, positionTo);
         board[positionTo] = board[positionFrom];
         board[positionFrom] = Space();
         this->_hasMoved = true;

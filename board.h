@@ -36,6 +36,7 @@ public:
 
    void takeTurn() { currentMove++; };
    bool isWhiteTurn() {return currentMove % 2 == 0;};
+   bool castle();
 
    
 private:

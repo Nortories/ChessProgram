@@ -15,15 +15,16 @@ void Board::selector(Interface& pUI)
 {
     if (this->board[pUI.getSelectPosition()].move(this->board, pUI.getPreviousPosition(), pUI.getSelectPosition(), this->isWhiteTurn()))
     {
-        pUI.clearSelectPosition();
+        
         this->takeTurn();
 
         for (int i = 0; i < 64; i++) {
             char p = this->board[i].getType();
             if (p == 'p' || p == 'P') {
-            this->board[i].checkEnpassant();
+            this->board[i].checkEnpassant(this->board, pUI.getSelectPosition());
             }
         }
+        pUI.clearSelectPosition();
 
         cout << "It is now " << (this->isWhiteTurn() ? "white's" : "black's") << " turn\n Game has had " << currentMove<< " moves";
     }

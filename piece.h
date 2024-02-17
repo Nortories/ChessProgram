@@ -72,9 +72,17 @@ public:
     void draw(int i, Interface& ui);
 
     void promote(Piece* board,int positionFrom, int location);
-
+    void kill(Piece* board, int selectPosition);
     bool canEnpassant() { return _enpassant; };
-    void checkEnpassant() {
+    void checkEnpassant(Piece* board, int selectPosition) {
+        if (_enpassant && ((board[selectPosition + 8].getType() == 'p' || board[selectPosition + 8].getType() == 'P'))) {
+            cout << "Enpassant Kill!";
+            kill(board, selectPosition + 8);
+        };
+        if (_enpassant && ((board[selectPosition - 8].getType() == 'p' || board[selectPosition - 8].getType() == 'P'))) {
+            cout << "Enpassant Kill!";
+            kill(board, selectPosition - 8);
+        };
     nMove--;
     if (nMove <= 0)
 		_enpassant = false;

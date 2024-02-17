@@ -106,6 +106,9 @@ bool Piece::move(Piece* board, int positionFrom, int positionTo, bool isWhiteTur
     return false;
 
 }
+void Piece::kill(Piece* board, int selectPosition) {
+	board[selectPosition] = Space(selectPosition);
+}
 set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
 {
     //cout << location;
@@ -149,10 +152,9 @@ set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
         if (!isWhiteTurn && row == 3) {
             if (col > 0 && checkIsWhite(board, row, col-1) && (board[location-1].canEnpassant())) { // Check left for en passant
                 possible.insert((row - 1) * 8 + (col - 1)); // Capture en passant
-                board[location - 1] = Space();
 
             }
-            if (col < 7 && checkIsWhite(board, row, col-1) && (board[location + 1].canEnpassant()))  { // Check right for en passant
+            if (col < 7 && checkIsWhite(board, row, col+1) && (board[location + 1].canEnpassant()))  { // Check right for en passant
                 possible.insert((row - 1) * 8 + (col + 1)); // Capture en passant
             }
         }
@@ -177,6 +179,15 @@ set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
         if (isBlack(board, r, c))
             possible.insert(r * 8 + c);      // attack right
         // what about en-passant and pawn promotion
+        if (isWhiteTurn && row == 4) {
+            if (col > 0 && !checkIsWhite(board, row, col - 1) && (board[location - 1].canEnpassant())) { // Check left for en passant
+                possible.insert((row + 1) * 8 + (col - 1)); // Capture en passant
+
+            }
+            if (col < 7 && !checkIsWhite(board, row, col + 1) && (board[location + 1].canEnpassant())) { // Check right for en passant
+                possible.insert((row + 1) * 8 + (col + 1)); // Capture en passant
+            }
+        }
     }
 
     //

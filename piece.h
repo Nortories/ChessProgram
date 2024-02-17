@@ -20,9 +20,12 @@ protected:
     int position;
     bool fWhite;
     bool isSpace = false;
-    int nMove;
+    int nMove = 0;
     char type;
     bool hasMoved = false;
+    bool _enpassant = false;
+    bool _dead = false;
+
 
 
     struct RC
@@ -69,5 +72,14 @@ public:
     void draw(int i, Interface& ui);
 
     void promote(Piece* board,int positionFrom, int location);
+
+    bool canEnpassant() { return _enpassant; };
+    void checkEnpassant() {
+    nMove--;
+    if (nMove <= 0)
+		_enpassant = false;
+        cout << "Enpassant is now " << _enpassant << " position " << getPosition() << endl;
+    };
+
 };
 

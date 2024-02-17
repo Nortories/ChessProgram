@@ -121,9 +121,6 @@ set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
     int c;                   // the column we are checking
     bool amBlack = isBlack(board, row, col); // are we black?
 
-    //if (board[location].getType() == 'P'){
-    //    return (board[location].getPawnMoves(board, location, isWhiteTurn));
-    //};
     //
     // PAWN
     //
@@ -134,6 +131,8 @@ set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
         r = row - 2;
         if (row == 6 && board[r * 8 + c].getType() == ' ') {
             possible.insert(r * 8 + c);  // forward two blank spaces
+            _enpassant = true;
+            nMove= 2;
         }
         r = row - 1;
         if (r >= 0 && board[r * 8 + c].getType() == ' ')
@@ -147,14 +146,16 @@ set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
 
         // what about en-passant and pawn promotion
         // En Passant for black pawn
-        //if (!isWhiteTurn && row == 3) {
-        //    if (col > 0 && checkIsWhite(board, row, col-1)&& board[lastmoved].enPassant) { // Check left for en passant
-        //        possible.insert((row - 1) * 8 + (col - 1)); // Capture en passant
-        //    }
-        //    if (col < 7 && checkIsWhite(board, row, col-1)) { // Check right for en passant
-        //        possible.insert((row - 1) * 8 + (col + 1)); // Capture en passant
-        //    }
-        //}
+        if (!isWhiteTurn && row == 3) {
+            if (col > 0 && checkIsWhite(board, row, col-1) && (board[location-1].canEnpassant())) { // Check left for en passant
+                possible.insert((row - 1) * 8 + (col - 1)); // Capture en passant
+                board[location - 1] = Space();
+
+            }
+            if (col < 7 && checkIsWhite(board, row, col-1) && (board[location + 1].canEnpassant()))  { // Check right for en passant
+                possible.insert((row - 1) * 8 + (col + 1)); // Capture en passant
+            }
+        }
 
 
     }
@@ -164,6 +165,8 @@ set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
         r = row + 2;
         if (row == 1 && board[r * 8 + c].getType() == ' ')
             possible.insert(r * 8 + c);  // forward two blank spaces
+            _enpassant = true;
+            nMove = 2;
         r = row + 1;
         if (r < 8 && board[r * 8 + c].getType() == ' ')
             possible.insert(r * 8 + c);    // forward one blank space

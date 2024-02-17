@@ -17,10 +17,18 @@ void Board::selector(Interface& pUI)
     {
         pUI.clearSelectPosition();
         this->takeTurn();
+
+        for (int i = 0; i < 64; i++) {
+            char p = this->board[i].getType();
+            if (p == 'p' || p == 'P') {
+            this->board[i].checkEnpassant();
+            }
+        }
+
         cout << "It is now " << (this->isWhiteTurn() ? "white's" : "black's") << " turn\n Game has had " << currentMove<< " moves";
     }
     else
-        possible = this->board[pUI.getSelectPosition()].getPossibleMoves(this->board, pUI.getSelectPosition(), this->isWhiteTurn());
+        _possible = this->board[pUI.getSelectPosition()].getPossibleMoves(this->board, pUI.getSelectPosition(), this->isWhiteTurn());
     //cout << possible.size() << endl;
 
     // if we clicked on a blank spot, then it is not selected
@@ -46,7 +54,7 @@ void Board::draw(Interface& ui)
 
     // draw the possible moves
     set <int> ::iterator it;
-    for (it = possible.begin(); it != possible.end(); ++it)
+    for (it = _possible.begin(); it != _possible.end(); ++it)
         gout.drawPossible(*it);
 
     for (int i = 0; i < 64; i++)

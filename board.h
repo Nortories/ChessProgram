@@ -36,6 +36,7 @@ public:
 
    void takeTurn() { currentMove++; };
    bool isWhiteTurn() {return currentMove % 2 == 0;};
+
    
 private:
 
@@ -60,7 +61,7 @@ private:
        Rook(0, true),   Knight(1, true),   Bishop(2, true),   Queen(3, true),   King(4, true),   Bishop(5, true),   Knight(6, true),   Rook(7, true)
        }; 
 
-    set <int> possible;
+    set <int> _possible;
     int currentMove;
     ogstream gout;
     Interface ui;

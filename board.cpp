@@ -13,10 +13,11 @@
 *****************************************************/
 void Board::selector(Interface& pUI)
 {
-    if (this->board[pUI.getSelectPosition()].move(this->board, pUI.getPreviousPosition(), pUI.getSelectPosition(), isWhiteTurn()))
+    if (this->board[pUI.getSelectPosition()].move(this->board, pUI.getPreviousPosition(), pUI.getSelectPosition(), this->isWhiteTurn()))
     {
         pUI.clearSelectPosition();
         this->takeTurn();
+        cout << "It is now " << (this->isWhiteTurn() ? "white's" : "black's") << " turn\n Game has had " << currentMove<< " moves";
     }
     else
         possible = this->board[pUI.getSelectPosition()].getPossibleMoves(this->board, pUI.getSelectPosition(), this->isWhiteTurn());

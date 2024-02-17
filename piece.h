@@ -24,7 +24,6 @@ protected:
     char type;
     bool hasMoved = false;
 
-    set <int> possible;
 
     struct RC
     {

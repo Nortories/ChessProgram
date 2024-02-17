@@ -119,9 +119,11 @@ set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
     int col = location % 8;  // current location column
     int r;                   // the row we are checking
     int c;                   // the column we are checking
-    bool amBlack = isBlack(board, row, col);
+    bool amBlack = isBlack(board, row, col); // are we black?
 
-
+    //if (board[location].getType() == 'P'){
+    //    return (board[location].getPawnMoves(board, location, isWhiteTurn));
+    //};
     //
     // PAWN
     //

@@ -63,24 +63,6 @@ void Piece::draw(int i, Interface& ui){
     };
 }
 
-void Piece::promote(Piece* board, int positionFrom, int positionTo) {
-    cout << board[positionFrom].getType() << " positionTo " << positionTo << endl;
-
-    // Check for valid promotion conditions and ensure positionFrom points to a valid object
-    if (board[positionFrom].getType() == 'P' && positionTo < 8) {
-        cout << "Promotion up" << endl;
-        Piece thisBoard = board[positionTo];
-        thisBoard = Queen(positionTo, true);
-    }
-    //else if (board[positionFrom].getType() == 'p' && positionTo > 55) {
-    //    cout << "Promotion down" << endl;
-    //    delete board[positionTo]; // Correct if board[positionTo] was dynamically allocated
-    //    board[positionTo] = new Queen(positionTo, false); // Dynamically allocate a new Queen
-    //}
-}
-
-
-
 bool Piece::move(Piece* board, int positionFrom, int positionTo, bool isWhiteTurn)
 {
     // do not move if a move was not indicated
@@ -95,7 +77,6 @@ bool Piece::move(Piece* board, int positionFrom, int positionTo, bool isWhiteTur
     // only move there is the suggested move is on the set of possible moves
     if (possiblePrevious.find(positionTo) != possiblePrevious.end())
     {
-        promote(board, positionFrom, positionTo);
         board[positionTo] = board[positionFrom];
         board[positionFrom] = Space();
         this->hasMoved = true;
@@ -106,223 +87,14 @@ bool Piece::move(Piece* board, int positionFrom, int positionTo, bool isWhiteTur
     return false;
 
 }
-void Piece::kill(Piece* board, int selectPosition) {
+
+void Piece::kill(Piece* board, int selectPosition) 
+{
 	board[selectPosition] = Space(selectPosition);
 }
+
 set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
 {
-    //cout << location;
-    //cout << "getPossibleMoves of: " << board[location].getType() <<endl;
-    set <int> possible;
-
-    // return the empty set if there simply are no possible moves
-    if (location < 0 || location >= 64 || board[location].getType() == ' ')
-        return possible;
-    int row = location / 8;  // current location row
-    int col = location % 8;  // current location column
-    int r;                   // the row we are checking
-    int c;                   // the column we are checking
-    bool amBlack = isBlack(board, row, col); // are we black?
-
-    //
-    // PAWN
-    //
-    if (board[location].getType() == 'P' && !isWhiteTurn)
-    {
-        
-        c = col;
-        r = row - 2;
-        if (row == 6 && board[r * 8 + c].getType() == ' ') {
-            possible.insert(r * 8 + c);  // forward two blank spaces
-            _enpassant = true;
-            nMove= 2;
-        }
-        r = row - 1;
-        if (r >= 0 && board[r * 8 + c].getType() == ' ')
-            possible.insert(r * 8 + c);  // forward one black space
-        c = col - 1;
-        if (checkIsWhite(board, r, c))
-            possible.insert(r * 8 + c);    // attack left
-        c = col + 1;
-        if (checkIsWhite(board, r, c))
-            possible.insert(r * 8 + c);    // attack right
-
-        // what about en-passant and pawn promotion
-        // En Passant for black pawn
-        if (!isWhiteTurn && row == 3) {
-            if (col > 0 && checkIsWhite(board, row, col-1) && (board[location-1].canEnpassant())) { // Check left for en passant
-                possible.insert((row - 1) * 8 + (col - 1)); // Capture en passant
-
-            }
-            if (col < 7 && checkIsWhite(board, row, col+1) && (board[location + 1].canEnpassant()))  { // Check right for en passant
-                possible.insert((row - 1) * 8 + (col + 1)); // Capture en passant
-            }
-        }
-
-
-    }
-    if (board[location].getType() == 'p' && isWhiteTurn)
-    {
-        c = col;
-        r = row + 2;
-        if (row == 1 && board[r * 8 + c].getType() == ' ')
-            possible.insert(r * 8 + c);  // forward two blank spaces
-            _enpassant = true;
-            nMove = 2;
-        r = row + 1;
-        if (r < 8 && board[r * 8 + c].getType() == ' ')
-            possible.insert(r * 8 + c);    // forward one blank space
-        c = col - 1;
-        if (isBlack(board, r, c))
-            possible.insert(r * 8 + c);      // attack left
-        c = col + 1;
-        if (isBlack(board, r, c))
-            possible.insert(r * 8 + c);      // attack right
-        // what about en-passant and pawn promotion
-        if (isWhiteTurn && row == 4) {
-            if (col > 0 && !checkIsWhite(board, row, col - 1) && (board[location - 1].canEnpassant())) { // Check left for en passant
-                possible.insert((row + 1) * 8 + (col - 1)); // Capture en passant
-
-            }
-            if (col < 7 && !checkIsWhite(board, row, col + 1) && (board[location + 1].canEnpassant())) { // Check right for en passant
-                possible.insert((row + 1) * 8 + (col + 1)); // Capture en passant
-            }
-        }
-    }
-
-    //
-    // KNIGHT
-    //
-    if ((board[location].getType() == 'N' && !isWhiteTurn) || (board[location].getType() == 'n' && isWhiteTurn))
-    {
-        RC moves[8] =
-        {
-                 {-1,  2}, { 1,  2},
-        {-2,  1},                    { 2,  1},
-        {-2, -1},                    { 2, -1},
-                 {-1, -2}, { 1, -2}
-        };
-        for (int i = 0; i < 8; i++)
-        {
-            r = row + moves[i].row;
-            c = col + moves[i].col;
-            if (amBlack && isNotBlack(board, r, c))
-                possible.insert(r * 8 + c);
-            if (!amBlack && isNotWhite(board, r, c))
-                possible.insert(r * 8 + c);
-        }
-    }
-
-    //
-    // KING
-    //
-    if ((board[location].getType() == 'K' && !isWhiteTurn) || (board[location].getType() == 'k' && isWhiteTurn))
-    {
-        RC moves[8] =
-        {
-           {-1,  1}, {0,  1}, {1,  1},
-           {-1,  0},          {1,  0},
-           {-1, -1}, {0, -1}, {1, -1}
-        };
-        for (int i = 0; i < 8; i++)
-        {
-            r = row + moves[i].row;
-            c = col + moves[i].col;
-            if (amBlack && isNotBlack(board, r, c))
-                possible.insert(r * 8 + c);
-            if (!amBlack && isNotWhite(board, r, c))
-                possible.insert(r * 8 + c);
-        }
-        // what about castling?
-    }
-
-    //
-    // QUEEN
-    //
-    if ((board[location].getType() == 'Q' && !isWhiteTurn) || (board[location].getType() == 'q' && isWhiteTurn))
-    {
-        RC moves[8] =
-        {
-           {-1,  1}, {0,  1}, {1,  1},
-           {-1,  0},          {1,  0},
-           {-1, -1}, {0, -1}, {1, -1}
-        };
-        for (int i = 0; i < 8; i++)
-        {
-            r = row + moves[i].row;
-            c = col + moves[i].col;
-            while (r >= 0 && r < 8 && c >= 0 && c < 8 &&
-                board[r * 8 + c].getType() == ' ')
-            {
-                possible.insert(r * 8 + c);
-                r += moves[i].row;
-                c += moves[i].col;
-            }
-            if (amBlack && isNotBlack(board, r, c))
-                possible.insert(r * 8 + c);
-            if (!amBlack && isNotWhite(board, r, c))
-                possible.insert(r * 8 + c);
-        }
-    }
-
-    //
-    // ROOK
-    //
-    if ((board[location].getType() == 'R' && !isWhiteTurn) || (board[location].getType() == 'r' && isWhiteTurn))
-    {
-        RC moves[4] =
-        {
-                    {0,  1},
-           {-1, 0},         {1, 0},
-                    {0, -1}
-        };
-        for (int i = 0; i < 4; i++)
-        {
-            r = row + moves[i].row;
-            c = col + moves[i].col;
-            while (r >= 0 && r < 8 && c >= 0 && c < 8 &&
-                board[r * 8 + c].getType() == ' ')
-            {
-                possible.insert(r * 8 + c);
-                r += moves[i].row;
-                c += moves[i].col;
-            }
-            if (amBlack && isNotBlack(board, r, c))
-                possible.insert(r * 8 + c);
-            if (!amBlack && isNotWhite(board, r, c))
-                possible.insert(r * 8 + c);
-        }
-    }
-
-    //
-    // BISHOP
-    //
-    if ((board[location].getType() == 'B' && !isWhiteTurn )|| (board[location].getType() == 'b' && isWhiteTurn))
-    {
-        RC moves[4] =
-        {
-           {-1,  1}, {1,  1},
-           {-1, -1}, {1, -1}
-        };
-        for (int i = 0; i < 4; i++)
-        {
-            r = row + moves[i].row;
-            c = col + moves[i].col;
-            while (r >= 0 && r < 8 && c >= 0 && c < 8 &&
-                board[r * 8 + c].getType() == ' ')
-            {
-                possible.insert(r * 8 + c);
-                r += moves[i].row;
-                c += moves[i].col;
-            }
-            if (amBlack && isNotBlack(board, r, c))
-                possible.insert(r * 8 + c);
-            if (!amBlack && isNotWhite(board, r, c))
-                possible.insert(r * 8 + c);
-        }
-    }
-
-    return possible;
 }
 
 

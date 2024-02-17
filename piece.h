@@ -41,11 +41,11 @@ public:
     Piece(int pos, bool isWhite);
     Piece(int pos, bool isWhite, char type)
     {
-        position = pos;
-		fWhite = isWhite;
-		this->type = type;
-		nMove = 0;
-		hasMoved = false;
+       position = pos;
+		 fWhite = isWhite;
+		 this->type = type;
+		 nMove = 0;
+		 hasMoved = false;
     };
 
     bool isNotWhite(const Piece* board, int row, int col);
@@ -61,7 +61,7 @@ public:
     int getNMoves() const;
     void setNMoves(int n);
     bool move(Piece* boardPieces, int positionFrom, int positionTo, bool isWhiteTurn);
-    set <int> getPossibleMoves(Piece* board, int location, bool isWhiteTurn);
+    virtual set <int> getPossibleMoves(Piece* board, int location, bool isWhiteTurn);
     void movePos(int pos);
     int getPosition() const;
     char getLetter() const;

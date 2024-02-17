@@ -8,14 +8,14 @@ class Pawn : public Piece
 		Pawn(int pos) : Piece(pos, type) {};
 		Pawn() : Piece(0, 'p') {};
 
-		Pawn(int pos, bool isWhite) : Piece(pos , isWhite, type) {
-		if (checkIsWhite())
-			type = 'P';
-		else
-			type = 'p';
+		Pawn(int pos, bool isWhite) : Piece(pos, isWhite, type) {
+			if (checkIsWhite())
+				type = 'P';
+			else
+				type = 'p';
 		};
 
-		//set <int> getPawnMoves(Piece* board, int location, bool isWhiteTurn) override{
+		//set <int> getPossibleMoves(Piece* board, int location, bool isWhiteTurn) override{
 		//	
 		//	/****************
 		//	* If Black Pawn *
@@ -42,28 +42,5 @@ class Pawn : public Piece
 		//	c = col + 1;
 		//	if (checkIsWhite(board, r, c))
 		//		possible.insert(r * 8 + c);    // attack right
-		//	/****************
-		//	* If White Pawn *
-		//	*******************/
-		//	if (isWhiteTurn)
-		//	{
-		//		c = col;
-		//		r = row + 2;
-		//		if (row == 1 && board[r * 8 + c].getType() == ' ')
-		//			possible.insert(r * 8 + c);  // forward two blank spaces
-		//		r = row + 1;
-		//		if (r < 8 && board[r * 8 + c].getType() == ' ')
-		//			possible.insert(r * 8 + c);    // forward one blank space
-		//		c = col - 1;
-		//		if (isBlack(board, r, c))
-		//			possible.insert(r * 8 + c);      // attack left
-		//		c = col + 1;
-		//		if (isBlack(board, r, c))
-		//			possible.insert(r * 8 + c);      // attack right
-		//		// what about en-passant and pawn promotion
-		//	}
 
-		//	return possible;
-		//}
-		//};
 };

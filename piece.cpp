@@ -98,8 +98,14 @@ bool Piece::move(Piece* board, int positionFrom, int positionTo, bool isWhiteTur
         promote(board, positionFrom, positionTo);
         board[positionTo] = board[positionFrom];
         board[positionFrom] = Space();
-        this->hasMoved = true;
+        this->_hasMoved = true;
         cout << board[positionFrom].getType() <<" Moved from " << positionFrom << " to " << positionTo << endl;
+
+        // Check for valid promotion conditions and ensure positionFrom points to a valid object
+        if (board[positionTo].getType() == 'p' && (positionTo >= 56 && positionTo <= 63))
+        { board[positionTo] = Queen(positionTo, false);}
+        if (board[positionTo].getType() == 'P' && (positionTo >= 0 && positionTo <= 7))
+        { board[positionTo] = Queen(positionTo, true);}
         return true;
     }
 
@@ -230,10 +236,39 @@ set <int> Piece::getPossibleMoves(Piece* board, int location, bool isWhiteTurn)
             c = col + moves[i].col;
             if (amBlack && isNotBlack(board, r, c))
                 possible.insert(r * 8 + c);
-            if (!amBlack && isNotWhite(board, r, c))
+            if (!amBlack && isNotWhite(board, r, c)) {
                 possible.insert(r * 8 + c);
+            }
         }
-        // what about castling?
+        // what about castling
+        if (!board[location].hasMoved()) {
+            // castling for black king
+
+            //black king side
+            if (board[location].getType() == 'k') {
+
+                if ((board[location + 1].getType() == ' ' && board[location + 2].getType() == ' ' && !board[location + 3].hasMoved())) {
+                    possible.insert(location + 2);
+                }
+                // white queen side
+                if (board[location - 1].getType() == ' ' && board[location - 2].getType() == ' ' && board[location - 3].getType() == ' ' && !board[location - 4].hasMoved()) {
+                    possible.insert(location - 2);
+                }
+            }
+            // castling for white king
+
+            //white king side
+            if (board[location].getType() == 'K') {
+
+                if ((board[location + 1].getType() == ' ' && board[location + 2].getType() == ' ' && !board[location + 3].hasMoved())) {
+                    possible.insert(location + 2);
+                }
+                // white queen side
+                if (board[location - 1].getType() == ' ' && board[location - 2].getType() == ' ' && board[location - 3].getType() == ' ' && !board[location - 4].hasMoved()) {
+                    possible.insert(location - 2);
+                }
+            }
+		}
     }
 
     //
@@ -390,7 +425,7 @@ Piece::Piece(int pos, char type): position(pos), type(type)
     this->isSpace = true;
 	this->fWhite = true;
 	this->nMove = 0;
-	this->hasMoved = false;
+	this->_hasMoved = false;
 }
 
 Piece::Piece(int pos, bool isWhite) : position(pos), fWhite(isWhite)
@@ -398,7 +433,7 @@ Piece::Piece(int pos, bool isWhite) : position(pos), fWhite(isWhite)
     this->type = ' ';
 	this->isSpace = true;
 	this->nMove = 0;
-	this->hasMoved = false;
+	this->_hasMoved = false;
 }
 
 void Piece::assign(int pos) {
@@ -420,14 +455,14 @@ bool Piece::checkIsWhite() const
 
 bool Piece::getHasMoved() const
 {
-    return this-> hasMoved;
+    return this-> _hasMoved;
 }
 
 void Piece::movePos(int pos)
 {
 	this->position = pos;
 	this->nMove++;
-	this->hasMoved = true;
+	this->_hasMoved = true;
 };
 
 int Piece::getNMoves() const

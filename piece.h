@@ -22,7 +22,7 @@ protected:
     bool isSpace = false;
     int nMove = 0;
     char type;
-    bool hasMoved = false;
+    bool _hasMoved = false;
     bool _enpassant = false;
     bool _dead = false;
 
@@ -45,7 +45,7 @@ public:
 		fWhite = isWhite;
 		this->type = type;
 		nMove = 0;
-		hasMoved = false;
+		_hasMoved = false;
     };
 
     bool isNotWhite(const Piece* board, int row, int col);
@@ -57,7 +57,7 @@ public:
     void assignPiece(const Piece& piece);
     bool checkIsWhite() const;
     bool getHasMoved() const;
-    void HasMoved() { hasMoved = true; };
+    bool hasMoved() { return _hasMoved; };
     int getNMoves() const;
     void setNMoves(int n);
     bool move(Piece* boardPieces, int positionFrom, int positionTo, bool isWhiteTurn);
